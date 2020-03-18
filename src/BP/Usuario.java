@@ -18,7 +18,6 @@ public class Usuario extends Proponente {
 	private Notificacion nPendienteRegistro;
 	private Notificacion nBloqueoDeAdmin;
 	
-	private HashSet<Proyecto> proyectosSuscritosNotificaciones;
 	private List<Notificacion> nSuscripcionEstadoProyecto;
 	
 	private HashSet<Proyecto> proyectosPropuestos;
@@ -35,7 +34,6 @@ public class Usuario extends Proponente {
 		NIF = nif; nombre = nomb; setContraseña(contra); id = i; setEstado(est);
 		this.conjuntoColectivosSuscrito = new HashSet<Colectivo>();
 		this.nPendienteRegistro = new Notificacion("Pendiente de Registro","Debes de esperar a la validacion del administrador");
-		this.proyectosSuscritosNotificaciones = new HashSet<Proyecto>();
 		this.proyectosPropuestos = new HashSet<Proyecto>();
 	}
 	
@@ -93,18 +91,14 @@ public class Usuario extends Proponente {
 
 
 	
-	public Boolean suscribirseAProyecto(Proyecto p) {
-		
-		EstadoProyecto estado = p.getEstadoProyecto();
-		if(estado == EstadoProyecto.OPERATIVO || estado == EstadoProyecto.PENDIENTEFINANCIACION) {
-			this.proyectosSuscritosNotificaciones.add(p);
-			return true;
-			
-		}else {
-			return false;
-		}
-		
-		
+	public void suscribirseAProyecto(Proyecto p) {
+		p.suscribirseANotificacionesDeProyecto( this);
+	}
+	
+	
+	//funcion llamada desde proyecto!
+	public void anniadirNotificacionDeProyecto(Notificacion n) {
+		this.nSuscripcionEstadoProyecto.add(n);
 	}
 	
 	

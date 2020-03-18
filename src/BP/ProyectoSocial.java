@@ -3,13 +3,15 @@ package BP;
 import java.util.Date;
 
 public class ProyectoSocial extends Proyecto{
-	private Boolean Nacional;
-	private String GrupoSocial;
+	private Boolean nacional;
+	private String grupoSocial;
 	
-	public ProyectoSocial(String nombre, String descripcionLarga, String descripcionCorta, Date fechaCreacion, Date fechaUltimoApoyo, Integer idProponenteCreador, Boolean nac,
-			Double coste, Double financiacionRecibida, String gsocial) {
-		super(nombre, descripcionLarga, descripcionCorta, fechaCreacion, fechaUltimoApoyo, idProponenteCreador, coste, financiacionRecibida);
-		GrupoSocial = gsocial; Nacional = nac;
+	public ProyectoSocial(Proponente p, Usuario uCreador,String nombre, String descrL, String descC , double cost ,String gsocial, Boolean nac) {
+		
+		super(p, uCreador, nombre, descrL, descC, cost);
+		this.grupoSocial = gsocial;
+		this.nacional = nac;
+		
 	}
 	
 }

@@ -3,13 +3,19 @@ package BP;
 import java.util.Date;
 
 public class ProyectoInfraestructura extends Proyecto {
-	private String Distrito;
-	private String Croquis;
-	private String Imagen;
+	private String distrito;
+	private String croquis;
+	private String imagen;
 	
-	public ProyectoInfraestructura(String nombre, String descripcionLarga, String descripcionCorta, Date fechaCreacion, Date fechaUltimoApoyo, Integer idProponenteCreador, String dist,
-			Double coste, Double financiacionRecibida, String croquis, String imagen) {
-		super(nombre, descripcionLarga, descripcionCorta, fechaCreacion, fechaUltimoApoyo, idProponenteCreador, coste, financiacionRecibida);
-		Distrito = dist; Croquis = croquis; Imagen = imagen;
+	public ProyectoInfraestructura(Proponente p, Usuario uCreador,String nombre, String descrL, String descC , double cost,String dist,String croquis ,String imagen) {
+		
+		super(p, uCreador, nombre, descrL, descC, cost);
+		this.distrito = dist;
+		this.croquis = croquis; 
+		this.imagen = imagen;
 	}
+	
+	
+	
+	
 }
