@@ -11,7 +11,7 @@ public class ProyectoSocial extends Proyecto{
 		super(p, uCreador, nombre, descrL, descC, cost);
 		this.grupoSocial = gsocial;
 		this.nacional = nac;
-		
+		 
 	}
 	
 }
