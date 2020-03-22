@@ -3,6 +3,11 @@ package BP;
 import java.util.HashSet;
 
 public class Aplicacion {
+	
+	private static final long serialVersionUID = 1111;
+	private static Aplicacion INSTANCE = null;
+	
+	
 	private String nombreAdmin;
 	private String contraseñaAdmin;
 	private Integer numMinApoyos;
@@ -22,7 +27,24 @@ public class Aplicacion {
 	}
 	
 	
+	/* Constructor singletown */
+	public static Aplicacion getInstancia(String userAdmin, String passwordAdmin,Integer numMinApoyos) {
+		if (INSTANCE == null) {
+			INSTANCE = new Aplicacion(userAdmin, passwordAdmin,numMinApoyos);
+		}
+		return INSTANCE;
+	}
 	
+	
+	
+	
+	
+	//inicar app
+		//caducarProyectos()
+	
+	
+
+
 	
 	
 	public Boolean addSolicitudFinanciacionProyecto(Proyecto p){

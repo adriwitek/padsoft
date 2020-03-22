@@ -5,6 +5,8 @@ import java.util.HashSet;
 
 public abstract class Proyecto {
 	
+	private static final long serialVersionUID = 1010;
+
 	
 	private Proponente proponente;
 	private Usuario usuarioCreador;
@@ -85,7 +87,7 @@ public abstract class Proyecto {
 		//TODO
 		//????
 		
-		
+		//Por ejemplo: tu proyecto es el número 28 más popular
 		
 		
 		return null;

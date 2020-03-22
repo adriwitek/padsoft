@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Usuario extends Proponente {
 	
-	
-	
+	private static final long serialVersionUID = 1011;
+
 	
 	private String NIF;
 	private String nombre;
