@@ -22,6 +22,10 @@ public class Colectivo extends Proponente{
 	
 	
 	
+
+	
+	
+	
 	
 	
 	
@@ -62,13 +66,8 @@ public class Colectivo extends Proponente{
 		return participantes;
 	}
 	
+
 	
 	
-	
-	
-	
-	
-	
-	
-	
+
 }

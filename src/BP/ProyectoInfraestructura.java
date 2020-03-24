@@ -1,5 +1,6 @@
 package BP;
 
+import java.nio.file.Files;
 import java.util.Date;
 
 public class ProyectoInfraestructura extends Proyecto {
@@ -12,7 +13,9 @@ public class ProyectoInfraestructura extends Proyecto {
 		super(p, uCreador, nombre, descrL, descC, cost);
 		this.distrito = dist;
 		this.croquis = croquis; 
-		this.imagen = imagen;
+		//this.imagen = ;
+		String ruta = "img/" + ""
+		Files.copy(imagen, target, REPLACE_EXISTING);
 	}
 	
 	

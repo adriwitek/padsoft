@@ -20,7 +20,7 @@ public class Usuario extends Proponente {
 	
 	private List<Notificacion> nSuscripcionEstadoProyecto;
 	
-	private HashSet<Proyecto> proyectosPropuestos;
+	//private HashSet<Proyecto> proyectosPropuestos;
 	private List<Notificacion> nRechazoProyectoProponente;
 
 	
@@ -34,7 +34,7 @@ public class Usuario extends Proponente {
 		NIF = nif; nombre = nomb; setContraseña(contra); id = i; setEstado(est);
 		this.conjuntoColectivosSuscrito = new HashSet<Colectivo>();
 		this.nPendienteRegistro = new Notificacion("Pendiente de Registro","Debes de esperar a la validacion del administrador");
-		this.proyectosPropuestos = new HashSet<Proyecto>();
+		//this.proyectosPropuestos = new HashSet<Proyecto>();
 	}
 	
 	
@@ -103,18 +103,14 @@ public class Usuario extends Proponente {
 	
 	
 
-	public Boolean anniadirProyectoPropuesto(Proyecto p) {
-		
-		if(this.proyectosPropuestos.contains(p)) {
-			return false;
-		}else {
-			this.proyectosPropuestos.add(p);
-			return true;
-		}
+	
+	
+	
+	
+	
+	
+	
 
-	}
-	
-	
 	
 	
 	

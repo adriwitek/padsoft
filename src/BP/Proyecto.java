@@ -110,9 +110,9 @@ public abstract class Proyecto {
 	/****METODOS DE CAMBIO DE ESTADO EN EL PROYECTO ***/
 	
 	
-	public Boolean solicitarFinanciacion(Aplicacion app) {
+	public Boolean solicitarFinanciacion() {
 		
-		if(app.addSolicitudFinanciacionProyecto(this)) {
+		if(Aplicacion.addSolicitudFinanciacionProyecto(this)) {
 			this.estadoProyecto = EstadoProyecto.PENDIENTEFINANCIACION;
 			return true;
 		}

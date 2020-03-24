@@ -13,6 +13,9 @@ public class Aplicacion {
 	private Integer numMinApoyos;
 	
 	private HashSet<Proyecto> proyectosSolicitandoFinanciacion;
+	private HashSet<Proyecto> proyectos;
+
+	
 	
 	//Constructor
 	public Aplicacion(String nomAdmin, String contrasena, Integer numMinApoyos) {
@@ -47,7 +50,7 @@ public class Aplicacion {
 
 	
 	
-	public Boolean addSolicitudFinanciacionProyecto(Proyecto p){
+	public static Boolean addSolicitudFinanciacionProyecto(Proyecto p){
 		
 		if(this.proyectosSolicitandoFinanciacion.contains(p)) {
 			return false;
@@ -62,7 +65,44 @@ public class Aplicacion {
 	
 	
 	
+	public ProyectoSocial crearProyectoSocial(Proponente p,String nombre, String descrL, String descC , double cost ,String gSocial, Boolean nac){
+		
+		ProyectoSocial proyecto;
+		
+		if(p.getClass().getName().equals("Colectivo")) {
+			Colectivo c = (Colectivo) p;
+			proyecto = new ProyectoSocial(p,c.getUsuarioRepresentanteDeColectivo() ,nombre,descrL, descC, cost,gSocial, nac);
+			
+		}else {//Usuario
+			Usuario u = (Usuario) p;
+			proyecto = new ProyectoSocial(u,u,nombre,descrL, descC, cost,gSocial, nac);
+			
+		}
+		p.proponerProyecto(proyecto);
+		
+		this.proyectos.add(proyecto);
+		return proyecto;
+		
+	}
 	
+	
+	public ProyectoInfraestructura crearPoryectoInfraestructura(Proponente p,String nombre, String descrL, String descC , double cost,String dist,String croquis ,String imagen){
+		ProyectoInfraestructura proyecto;
+		
+		if(p.getClass().getName().equals("Colectivo")) {
+			Colectivo c = (Colectivo) p;
+			proyecto = new ProyectoInfraestructura(p,c.getUsuarioRepresentanteDeColectivo() , nombre,  descrL,  descC ,  cost , dist, croquis , imagen);
+			
+		}else {//Usuario
+			Usuario u = (Usuario) p;
+			proyecto = new ProyectoInfraestructura(u,u , nombre,  descrL,  descC ,  cost , dist, croquis , imagen);			
+		}
+		p.proponerProyecto(proyecto);
+		
+		this.proyectos.add(proyecto);
+		return proyecto;
+		
+	}
 	
 }
 
