@@ -18,7 +18,5 @@ public abstract class Proponente {
 	}
 	
 
-
-	
 	
 }

@@ -13,7 +13,6 @@ public class Usuario extends Proponente {
 	private String contraseña;
 	private int id;
 	private EstadoUsuario estado;
-	private HashSet<Colectivo> conjuntoColectivosSuscrito;
 	
 	private Notificacion nPendienteRegistro;
 	private Notificacion nBloqueoDeAdmin;
@@ -32,7 +31,6 @@ public class Usuario extends Proponente {
 	/*Constructor*/
 	public Usuario(String nif, String nomb, String contra, int i, EstadoUsuario est) {
 		NIF = nif; nombre = nomb; setContraseña(contra); id = i; setEstado(est);
-		this.conjuntoColectivosSuscrito = new HashSet<Colectivo>();
 		this.nPendienteRegistro = new Notificacion("Pendiente de Registro","Debes de esperar a la validacion del administrador");
 		//this.proyectosPropuestos = new HashSet<Proyecto>();
 	}
@@ -80,14 +78,9 @@ public class Usuario extends Proponente {
 	
 	
 	
-	public HashSet<Colectivo> getListaColectivosSuscrito() {
-		return this.conjuntoColectivosSuscrito;
-	}
 	
 	
-	public void suscribirseColectivo(Colectivo c) {
-		this.conjuntoColectivosSuscrito.add(c);
-	}
+
 
 
 	

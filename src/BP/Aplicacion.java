@@ -12,9 +12,11 @@ public class Aplicacion {
 	private String contraseñaAdmin;
 	private Integer numMinApoyos;
 	
-	private HashSet<Proyecto> proyectosSolicitandoFinanciacion;
+	//Listados
+	private static HashSet<Proyecto> proyectosSolicitandoFinanciacion;
 	private HashSet<Proyecto> proyectos;
-
+	private static int lastProjectUniqueID;
+	private static int lastColectivoUniqueID;
 	
 	
 	//Constructor
@@ -25,7 +27,10 @@ public class Aplicacion {
 		this.numMinApoyos = numMinApoyos;
 		
 		
-		this.proyectosSolicitandoFinanciacion = new HashSet<Proyecto>();
+		this.proyectosSolicitandoFinanciacion = new HashSet<Proyecto>();//Tambien se podrian recorrer los proyectos, revisar!
+		this.proyectos = new HashSet<Proyecto>();
+		this.lastProjectUniqueID = 0;
+		this.lastColectivoUniqueID =0;
 		
 	}
 	
@@ -52,10 +57,10 @@ public class Aplicacion {
 	
 	public static Boolean addSolicitudFinanciacionProyecto(Proyecto p){
 		
-		if(this.proyectosSolicitandoFinanciacion.contains(p)) {
+		if(proyectosSolicitandoFinanciacion.contains(p)) {
 			return false;
 		}else {
-			this.proyectosSolicitandoFinanciacion.add(p);
+			proyectosSolicitandoFinanciacion.add(p);
 			return true;
 		}
 		
@@ -81,6 +86,7 @@ public class Aplicacion {
 		p.proponerProyecto(proyecto);
 		
 		this.proyectos.add(proyecto);
+		this.lastProjectUniqueID++;
 		return proyecto;
 		
 	}
@@ -100,9 +106,22 @@ public class Aplicacion {
 		p.proponerProyecto(proyecto);
 		
 		this.proyectos.add(proyecto);
+		this.lastProjectUniqueID++;
 		return proyecto;
 		
 	}
+	
+	
+	public static int getNewProjectUniqueId() {
+		return  lastProjectUniqueID +1;
+	}
+	
+	public static int getNewColectivoUniqueId() {
+		lastColectivoUniqueID++;
+		return  lastColectivoUniqueID;
+	}
+	
+	
 	
 }
 

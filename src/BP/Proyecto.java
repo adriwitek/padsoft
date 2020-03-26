@@ -12,6 +12,7 @@ public abstract class Proyecto {
 	private Usuario usuarioCreador;
 	private HashSet<Usuario> apoyantes;
 	
+	protected int uniqueID;
 	private String nombre;
 	private String descripcionLarga, descripcionCorta;
 	private Date fechaCreacion, fechaUltimoApoyo;
@@ -35,7 +36,7 @@ public abstract class Proyecto {
 		this.coste = cost;
 		this.setFinanciacionRecibida(0);
 		this.usuariosSuscritosNotificaciones= new HashSet<Usuario>()  ;
-		
+		this.uniqueID= Aplicacion.getNewProjectUniqueId();
 	}
 
 
