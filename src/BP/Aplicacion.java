@@ -24,6 +24,7 @@ public class Aplicacion {
 	private Usuario usuarioConectado;//Usuario estandar que esta usando en este momento la apliacion
 	
 	
+	
 	//Constructor
 	public Aplicacion(String nomAdmin, String contrasena, Integer numMinApoyos) {
 		
@@ -41,13 +42,18 @@ public class Aplicacion {
 	}
 	
 	
-	/* Constructor singletown */
+	// **** CONSTRUCTOR SINGLETON ***/
 	public static Aplicacion getInstancia(String userAdmin, String passwordAdmin,Integer numMinApoyos) {
 		if (INSTANCE == null) {
 			INSTANCE = new Aplicacion(userAdmin, passwordAdmin,numMinApoyos);
 		}
 		return INSTANCE;
 	}
+	
+	
+	
+	
+	
 	
 	
 	
@@ -82,9 +88,13 @@ public class Aplicacion {
 	
 	
 	
+	
+	
 
 	
 	//	***FUNCIONES LLAMADAS POR EL ADMIN***
+	
+	//loginAdmin
 
 	public HashSet<Usuario> getRegistrosPendientesDeAprobacion(){
 		
@@ -116,17 +126,45 @@ public class Aplicacion {
 		
 	}
 	
-	//getProyectosSolicitandoFinanciadion //llamada solo por el admin
+
+	public HashSet<Proyecto> getProyectosSolicitandoFinanciadion(){
+		
+		HashSet<Proyecto> listado = new HashSet<Proyecto>();
+		for(Proyecto p: this.proyectos) {
+			if(p.getEstadoProyecto() == EstadoProyecto.PENDIENTEFINANCIACION) {
+				listado.add(p);
+			}
+		}
+		return listado;
+	} 
 	
-	
-	//mandarNotificaion
 		
 	
 	
 	
 	
 	
-	//	***FUNCIONES LLAMADAS POR EL USUARIO LOGUEADO***
+	
+	
+	
+	
+	
+	
+	//	*** FUNCIONES LLAMADAS POR EL USUARIO LOGUEADO ***
+	
+	public Boolean loginUser(String user, String contraseña) {
+		
+		
+	
+		//TODO-------------------------
+	
+		
+		
+		
+		
+		//comprobar que el estado es operativo!!!!!
+		
+	}
 	
 	public ProyectoSocial crearProyectoSocial(Proponente p,String nombre, String descrL, String descC , double cost ,String gSocial, Boolean nac){
 		
@@ -168,6 +206,10 @@ public class Aplicacion {
 		return proyecto;
 		
 	}
+	
+	
+	
+	
 	
 	
 	

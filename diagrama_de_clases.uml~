@@ -58,7 +58,7 @@
 			CodeGeneration
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Thu Mar 26 10:07:55 CET 2020'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Thu Mar 26 10:22:06 CET 2020'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.34(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -184,6 +184,12 @@
                   name = 'return' isSpecification = 'false' kind = 'return'>
                   <UML:Parameter.type>
                     <UML:Enumeration href = 'http://argouml.org/profiles/uml14/default-uml14.xmi#-84-17--56-5-43645a83:11466542d86:-8000:0000000000000880'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+                <UML:Parameter xmi.id = '-64--88-1--124--3625a1bd:171153d4d62:-8000:0000000000000CC1'
+                  name = 'motivo' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:DataType href = 'http://argouml.org/profiles/uml14/default-uml14.xmi#-84-17--56-5-43645a83:11466542d86:-8000:000000000000087E'/>
                   </UML:Parameter.type>
                 </UML:Parameter>
               </UML:BehavioralFeature.parameter>
@@ -577,6 +583,19 @@
                 </UML:Parameter>
                 <UML:Parameter xmi.id = '-64--88-1--124--3625a1bd:171153d4d62:-8000:0000000000000CBE'
                   name = 'Motivo' isSpecification = 'false' kind = 'in'/>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88-1--124--3625a1bd:171153d4d62:-8000:0000000000000CC2'
+              name = 'getRegistrosPendientesDeAprobacion' visibility = 'public' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88-1--124--3625a1bd:171153d4d62:-8000:0000000000000CC3'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88-1--124--3625a1bd:171153d4d62:-8000:0000000000000CC4'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
               </UML:BehavioralFeature.parameter>
             </UML:Operation>
           </UML:Classifier.feature>
@@ -3340,6 +3359,9 @@
             </UML:AssociationEnd>
           </UML:Association.connection>
         </UML:Association>
+        <UML:Class xmi.id = '-64--88-1--124--3625a1bd:171153d4d62:-8000:0000000000000CC4'
+          name = 'HashSet&lt;Usuario&gt;' visibility = 'public' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
       </UML:Namespace.ownedElement>
     </UML:Model>
   </XMI.content>
@@ -3597,11 +3619,11 @@
         bold="false"
         textsize="12"
         justification="Left"
-      >+rechazar() : Boolean</text>
+      >+rechazar(motivo : String) : Boolean</text>
     </group>
   </group>
   <group name="Fig1"
-       description="org.argouml.uml.diagram.static_structure.ui.FigClass[616, 8, 475, 398]pathVisible=false;stereotypeView=0;operationsVisible=true;attributesVisible=true;"
+       description="org.argouml.uml.diagram.static_structure.ui.FigClass[616, 8, 475, 415]pathVisible=false;stereotypeView=0;operationsVisible=true;attributesVisible=true;"
        href="-87--2--72-44-2128bc0e:17057627584:-8000:0000000000000876"
        fill="1"
        fillcolor="white"
@@ -3615,7 +3637,7 @@
       x="616"
       y="8"
       width="475"
-      height="398"
+      height="415"
       fill="1"
       fillcolor="white"
       stroke="1"
@@ -3767,7 +3789,7 @@
       strokecolor="black"
     />
     <group name="Fig1.6"
-         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[617, 109, 473, 297]"
+         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[617, 109, 473, 314]"
          href="-87--2--72-44-2128bc0e:17057627584:-8000:0000000000000876"
          fill="0"
          fillcolor="white"
@@ -3781,7 +3803,7 @@
         x="617"
         y="109"
         width="473"
-        height="297"
+        height="314"
         fill="0"
         fillcolor="white"
         stroke="0"
@@ -4047,7 +4069,7 @@
         x="617"
         y="381"
         width="473"
-        height="23"
+        height="17"
         fill="0"
         fillcolor="white"
         stroke="0"
@@ -4059,6 +4081,22 @@
         textsize="12"
         justification="Left"
       >+rechazarRegistro(u : Usuario,Motivo)</text>
+      <text name="Fig1.6.18"
+        x="617"
+        y="398"
+        width="473"
+        height="23"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >+getRegistrosPendientesDeAprobacion() : HashSet&lt;Usuario&gt;</text>
     </group>
   </group>
   <group name="Fig2"
@@ -6078,7 +6116,7 @@
       strokecolor="black"
     >
       <moveto x="648"
-              y="405" />
+              y="422" />
       <lineto x="648"
               y="600" />
       <lineto x="880"

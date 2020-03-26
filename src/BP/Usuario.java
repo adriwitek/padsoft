@@ -42,16 +42,17 @@ public class Usuario extends Proponente {
 	
 	//Setters de estado del Usuario
 	
-	public void bloquear(Notificacion nBloqueoDeAdmin) {
+	public void bloquear(String motivo) {
 		if(getEstado() == EstadoUsuario.OPERATIVO) {
 			setEstado(EstadoUsuario.BLOQUEADO);
-			this.nBloqueoDeAdmin = nBloqueoDeAdmin;
+			this.nBloqueoDeAdmin  = new Notificacion("Tu cuenta se ha bloqueado","El motivo del bloqueo de tu cuenta es: " + motivo);
 		}
 	}
 	
 	public void desbloquear() {
 		if(getEstado() == EstadoUsuario.BLOQUEADO) {
 			setEstado(EstadoUsuario.OPERATIVO);
+			this.nBloqueoDeAdmin = null;
 		}
 	}
 	
