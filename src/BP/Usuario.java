@@ -14,13 +14,14 @@ public class Usuario extends Proponente {
 	private int id;
 	private EstadoUsuario estado;
 	
-	private Notificacion nPendienteRegistro;
+	//Notificaiones
+	private Notificacion nRechazoRegistro;
 	private Notificacion nBloqueoDeAdmin;
-	
 	private List<Notificacion> nSuscripcionEstadoProyecto;
-	
-	//private HashSet<Proyecto> proyectosPropuestos;
 	private List<Notificacion> nRechazoProyectoProponente;
+	
+
+	//private HashSet<Proyecto> proyectosPropuestos;
 
 	
 	
@@ -30,8 +31,10 @@ public class Usuario extends Proponente {
 	
 	/*Constructor*/
 	public Usuario(String nif, String nomb, String contra, int i, EstadoUsuario est) {
-		NIF = nif; nombre = nomb; setContraseña(contra); id = i; setEstado(est);
-		this.nPendienteRegistro = new Notificacion("Pendiente de Registro","Debes de esperar a la validacion del administrador");
+		NIF = nif; nombre = nomb; 
+		setContraseña(contra); 
+		id = i;
+		setEstado(est);
 		//this.proyectosPropuestos = new HashSet<Proyecto>();
 	}
 	
@@ -52,17 +55,23 @@ public class Usuario extends Proponente {
 		}
 	}
 	
-	public void aprobar() {
+	public Boolean aprobar() {
 		if(getEstado() == EstadoUsuario.PENDIENTE) {
 			setEstado(EstadoUsuario.OPERATIVO);
-			this.nPendienteRegistro = null;
+			this.nRechazoRegistro = null;
+			return true;
 		}
+		return false;
 	}
 	
-	public void rechazar() {
+	public Boolean rechazar(String motivo) {
 		if(getEstado() == EstadoUsuario.PENDIENTE) {
 			setEstado(EstadoUsuario.RECHAZADO);
+			this.nBloqueoDeAdmin = new Notificacion("Solicitud de Registro Rechazada","El administrador ha rechazado tu solicitud de alta en el "
+					+ "sistema debido a:" + motivo);
+			return true;
 		}
+		return false;
 	}
 	
 	
@@ -139,8 +148,8 @@ public class Usuario extends Proponente {
 
 
 
-	public Notificacion getnPendienteRegistro() {
-		return nPendienteRegistro;
+	public Notificacion getnRechazoRegistro() {
+		return nRechazoRegistro;
 	}
 
 

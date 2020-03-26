@@ -1,5 +1,7 @@
 package BP;
 
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.HashSet;
 
 public class Aplicacion {
@@ -7,16 +9,19 @@ public class Aplicacion {
 	private static final long serialVersionUID = 1111;
 	private static Aplicacion INSTANCE = null;
 	
-	
+	//Admin
 	private String nombreAdmin;
 	private String contraseñaAdmin;
 	private Integer numMinApoyos;
 	
 	//Listados
-	private static HashSet<Proyecto> proyectosSolicitandoFinanciacion;
+	//private static HashSet<Proyecto> proyectosSolicitandoFinanciacion;
 	private HashSet<Proyecto> proyectos;
+	private HashSet<Proponente> proponentes;
 	private static int lastProjectUniqueID;
 	private static int lastColectivoUniqueID;
+	
+	private Usuario usuarioConectado;//Usuario estandar que esta usando en este momento la apliacion
 	
 	
 	//Constructor
@@ -27,8 +32,9 @@ public class Aplicacion {
 		this.numMinApoyos = numMinApoyos;
 		
 		
-		this.proyectosSolicitandoFinanciacion = new HashSet<Proyecto>();//Tambien se podrian recorrer los proyectos, revisar!
+		//this.proyectosSolicitandoFinanciacion = new HashSet<Proyecto>();//Tambien se podrian recorrer los proyectos, revisar!
 		this.proyectos = new HashSet<Proyecto>();
+		this.proponentes = new HashSet<Proponente>();
 		this.lastProjectUniqueID = 0;
 		this.lastColectivoUniqueID =0;
 		
@@ -48,27 +54,79 @@ public class Aplicacion {
 	
 	
 	//inicar app
-		//caducarProyectos()
 	
 	
+	//Save
 
-
 	
+	//Load
 	
-	public static Boolean addSolicitudFinanciacionProyecto(Proyecto p){
+	public void caducarProyectosAntiguos() {
 		
-		if(proyectosSolicitandoFinanciacion.contains(p)) {
-			return false;
-		}else {
-			proyectosSolicitandoFinanciacion.add(p);
-			return true;
+		Date hoy = new Date();
+		Date fecha;
+		long days;
+		for(Proyecto p: proyectos) {
+			fecha = p.getFechaUltimoApoyo();
+			days = ChronoUnit.DAYS.between(hoy.toInstant(),fecha.toInstant());
+			if(days > 30) {
+				p.caducarProyecto();
+			}
 		}
-		
 	}
 	
 	
 	
 	
+	
+	
+	
+	
+
+	
+	//	***FUNCIONES LLAMADAS POR EL ADMIN***
+
+	public HashSet<Usuario> getRegistrosPendientesDeAprobacion(){
+		
+		Usuario u;
+		HashSet<Usuario> pendientes = new HashSet<Usuario>();
+		for(Proponente p: this.proponentes) {
+			if( p.getClass().getName() == "Usuario" ) {
+				u = (Usuario)p;
+				if(u.getEstado()== EstadoUsuario.PENDIENTE) {
+					pendientes.add(u);
+				}
+				
+			}
+		}
+		return pendientes;
+	}
+	
+	
+	
+	public void validarRegistro(Usuario u) {
+		u.aprobar();
+	}
+	
+	
+	
+	public void rechazarRegistro(Usuario u,String motivo) {
+		u.rechazar(motivo);
+		this.proponentes.remove(u);
+		
+	}
+	
+	//getProyectosSolicitandoFinanciadion //llamada solo por el admin
+	
+	
+	//mandarNotificaion
+		
+	
+	
+	
+	
+	
+	//	***FUNCIONES LLAMADAS POR EL USUARIO LOGUEADO***
 	
 	public ProyectoSocial crearProyectoSocial(Proponente p,String nombre, String descrL, String descC , double cost ,String gSocial, Boolean nac){
 		
@@ -92,7 +150,7 @@ public class Aplicacion {
 	}
 	
 	
-	public ProyectoInfraestructura crearPoryectoInfraestructura(Proponente p,String nombre, String descrL, String descC , double cost,String dist,String croquis ,String imagen){
+	public ProyectoInfraestructura crearProyectoInfraestructura(Proponente p,String nombre, String descrL, String descC , double cost,String dist,String croquis ,String imagen){
 		ProyectoInfraestructura proyecto;
 		
 		if(p.getClass().getName().equals("Colectivo")) {
@@ -111,6 +169,25 @@ public class Aplicacion {
 		
 	}
 	
+	
+	
+	
+	
+	
+	//	***FUNCIONES VARIAS INTERNAS***
+
+	
+	//revisar
+	public static Boolean addSolicitudFinanciacionProyecto(Proyecto p){
+		
+		if(proyectosSolicitandoFinanciacion.contains(p)) {
+			return false;
+		}else {
+			proyectosSolicitandoFinanciacion.add(p);
+			return true;
+		}
+		
+	}
 	
 	public static int getNewProjectUniqueId() {
 		return  lastProjectUniqueID +1;

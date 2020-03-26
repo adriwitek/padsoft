@@ -10,7 +10,7 @@ public abstract class Proyecto {
 	
 	private Proponente proponente;
 	private Usuario usuarioCreador;
-	private HashSet<Usuario> apoyantes;
+	private HashSet<Usuario> usuariosaApoyantes;
 	
 	protected int uniqueID;
 	private String nombre;
@@ -27,7 +27,7 @@ public abstract class Proyecto {
 		
 		this.proponente = p;
 		this.usuarioCreador = uCreador;
-		this.apoyantes = new HashSet<Usuario>();
+		this.usuariosaApoyantes = new HashSet<Usuario>();
 		this.nombre = nombre; 
 		this.setDescripcionLarga(descrL); 
 		this.setDescripcionCorta(descC);
@@ -50,11 +50,11 @@ public abstract class Proyecto {
 		if(this.estadoProyecto == EstadoProyecto.OPERATIVO) {
 			
 			if( p.getClass().getName() == "Usuario") {
-				this.apoyantes.add((Usuario) p);
+				this.usuariosaApoyantes.add((Usuario) p);
 			}else {
 				
 				for(Usuario u : ((Colectivo) p).getParticipantes() ) {
-					this.apoyantes.add(u);
+					this.usuariosaApoyantes.add(u);
 				}
 				
 			}
@@ -67,7 +67,7 @@ public abstract class Proyecto {
 	public int getNumeroApoyosActualesValidos() {
 		
 		int n =0;
-		for(Usuario u : this.apoyantes) {
+		for(Usuario u : this.usuariosaApoyantes) {
 			if(u.getEstado()== EstadoUsuario.OPERATIVO) {
 				n++;
 			}
@@ -167,7 +167,7 @@ public abstract class Proyecto {
 		this.estadoProyecto = EstadoProyecto.OPERATIVO;
 	}
 	
-	//lamado desde la applicacion al inicio
+	//lamado desde la applicacion al inicio con el control de fechas
 	public void caducarProyecto() {
 		this.estadoProyecto= EstadoProyecto.CADUCADO;
 	}
