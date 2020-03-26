@@ -105,6 +105,7 @@ public class Colectivo extends Proponente{
 	
 	
 	
+	
 	/**** getters y setter generarles    ****/
 	
 	
@@ -128,7 +129,7 @@ public class Colectivo extends Proponente{
 	/**
 	 * @return the idColectivo
 	 */
-	public String getIdColectivo() {
+	public Integer getIdColectivo() {
 		return idColectivo;
 	}
 
@@ -142,7 +143,9 @@ public class Colectivo extends Proponente{
 	}
 	
 
-	
+	public Colectivo getColectivoPadre() {
+		return this.colectivoPadre;
+	}
 	
 
 }
