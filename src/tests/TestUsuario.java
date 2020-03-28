@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import BP.EstadoUsuario;
-import BP.Usuario;
+import src.BP.EstadoUsuario;
+import src.BP.Usuario;
 public class TestUsuario {
 	private static Usuario testUser;
 	@BeforeClass
