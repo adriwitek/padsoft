@@ -4,7 +4,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.HashSet;
 
-public class Aplicacion {
+public class Aplicacion implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 1111;
 	private static Aplicacion INSTANCE = null;
@@ -54,7 +54,9 @@ public class Aplicacion {
 	
 	
 	//Save
-
+	public boolean saveAplicacion() {
+		
+	}
 	
 	//Load
 	
@@ -266,5 +268,6 @@ public class Aplicacion {
 	}
 	
 }
+
 
 

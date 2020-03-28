@@ -1,4 +1,10 @@
-package src.BP;
+package BP;
+
+/** 
+* 
+* @author Adián Rubio adrian.rubiop@estudiante.uam.es, Guillermo Solla guillermo.solla@estudiante.uam.es 
+* y Diego Tapia diego.tapias@estudiante.uam.es
+*/
 
 import java.util.HashSet;
 
@@ -9,6 +15,13 @@ public class Colectivo extends Proponente{
 	private Colectivo colectivoPadre;
 	private HashSet<Usuario> participantes;
 	private HashSet<Colectivo> subcolectivos;
+	
+	 /**
+	  * Constructor, con los datos a implementar
+	  * @param nombre que asignar al colectivo 
+	  * @param uRepresentante para asignar al usuario que ha creado el colectivo
+	  * @param colectivoPadre para asignar al colectivo del que es subcolectivo (en el caso de serlo)
+	  */
 	
 	public Colectivo(Usuario uRepresentante, String nombre,Colectivo colectivoPadre) {
 		
@@ -28,6 +41,12 @@ public class Colectivo extends Proponente{
 	
 	//TODO
 	
+	
+	/**
+	 * 
+	 * @param nombre
+	 * @return the c
+	 */
 	public Colectivo crearSubcolectivo(String nombre) {
 		
 		Colectivo c = new Colectivo(this.usuarioRepresentanteDeColectivo, nombre,this);		
@@ -35,7 +54,11 @@ public class Colectivo extends Proponente{
 		return c;
 	}
 	
-	
+	/**
+	 * 
+	 * @param u
+	 * @return 
+	 */
 	public Boolean getIsUsuarioEnColectivoSubcolectivo(Usuario u) {
 		
 		if(this.participantes.contains(u)){
@@ -48,7 +71,10 @@ public class Colectivo extends Proponente{
 		return false;
 	}
 	
-	
+	/**
+	 * 
+	 * @param u
+	 */
 	public void eliminarUsuarioDeColectivoSubcolectivos(Usuario u) {
 		if(getIsUsuarioEnColectivoSubcolectivo( u)) {
 			
@@ -64,7 +90,11 @@ public class Colectivo extends Proponente{
 			return;
 		}
 	}
-	
+	/**
+	 * 
+	 * @param u
+	 * @return 
+	 */
 	public Boolean suscribirseColectivo(Usuario u) {
 		
 		if(getIsUsuarioEnColectivoSubcolectivo( u)) {
@@ -77,7 +107,11 @@ public class Colectivo extends Proponente{
 	}
 	
 	
-	
+	/**
+	 * 
+	 * @param c
+	 * @return the afinidad
+	 */
 	public double obtenerAfinidad(Colectivo c) {
 		double afinidad =0;
 		HashSet<Usuario> participantesContenidos = new HashSet<Usuario>();
@@ -119,6 +153,7 @@ public class Colectivo extends Proponente{
 	}
 
 	/**
+	 * 
 	 * @return the usuarioRepresentanteDeColectivo
 	 */
 	public Usuario getUsuarioRepresentanteDeColectivo() {
@@ -142,10 +177,14 @@ public class Colectivo extends Proponente{
 		return participantes;
 	}
 	
-
+	/**
+	 * 
+	 * @return the colectivoPadre
+	 */
 	public Colectivo getColectivoPadre() {
 		return this.colectivoPadre;
 	}
 	
 
 }
+

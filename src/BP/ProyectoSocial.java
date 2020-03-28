@@ -1,7 +1,5 @@
 package BP;
 
-import java.util.Date;
-
 public class ProyectoSocial extends Proyecto{
 	private Boolean nacional;
 	private String grupoSocial;

@@ -3,7 +3,6 @@ package BP;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.Date;
 
 public class ProyectoInfraestructura extends Proyecto {
 	private String distrito;

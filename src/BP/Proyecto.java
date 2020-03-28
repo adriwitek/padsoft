@@ -314,16 +314,5 @@ public abstract class Proyecto {
 		return estadoProyecto;
 	}
 
-
-
-
-	
-
-
-
-	
-	
-	
-	
-	
 }
+
