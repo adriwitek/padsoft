@@ -1,9 +1,15 @@
 package BP;
 
+/** 
+* 
+* @author Adián Rubio adrian.rubiop@estudiante.uam.es, Guillermo Solla guillermo.solla@estudiante.uam.es 
+* y Diego Tapia diego.tapias@estudiante.uam.es
+*/
+
 import java.util.Date;
 import java.util.HashSet;
 
-public abstract class Proyecto {
+public abstract class Proyecto implements java.io.Serializable{
 	
 	private static final long serialVersionUID = 1010;
 
@@ -22,7 +28,16 @@ public abstract class Proyecto {
 	private HashSet<Usuario> usuariosSuscritosNotificaciones;
 	
 	
-	//Constructor
+	 /**
+	  * Constructor, con los datos a implementar
+	  * @param p que asignar al proponente 
+	  * @param uCreador para asignar al usuario que ha creado el proyecto
+	  * @param nombre para asignar al proyecto
+	  * @param descrL para asignar al proyecto
+	  * @param descC para asignar al proyecto
+	  * @param cost para asignar a la financiacón que se pretende obtener para crear el proyecto
+	  */
+	
 	public Proyecto(Proponente p, Usuario uCreador,String nombre, String descrL, String descC , double cost ) {
 		
 		this.proponente = p;
@@ -45,7 +60,10 @@ public abstract class Proyecto {
 	
 	
 	
-	
+	/**
+	 * 
+	 * @param p
+	 */
 	public void apoyarProyecto(Proponente p) {
 		if(this.estadoProyecto == EstadoProyecto.OPERATIVO) {
 			
@@ -63,7 +81,10 @@ public abstract class Proyecto {
 		
 	}
 	
-	
+	/**
+	 * 
+	 * @return the n
+	 */
 	public int getNumeroApoyosActualesValidos() {
 		
 		int n =0;
@@ -83,15 +104,17 @@ public abstract class Proyecto {
 	
 	
 	
-	
+	/**
+	 * 
+	 * @param u
+	 * @return
+	 */
 	public String obtenerInformePopularidad(Usuario u) {
 		//TODO
 		//????
+		return "numero de apoyos: " + getNumeroApoyosActualesValidos();
 		
 		//Por ejemplo: tu proyecto es el número 28 más popular
-		
-		
-		return null;
 	}
 	
 	
@@ -99,6 +122,11 @@ public abstract class Proyecto {
 	
 	
 	//Funcion llamada desde usuario
+	
+	/**
+	 * 
+	 * @param u
+	 */
 	public void suscribirseANotificacionesDeProyecto(Usuario u) {
 		this.usuariosSuscritosNotificaciones.add(u);
 	}
@@ -110,7 +138,10 @@ public abstract class Proyecto {
 	
 	/****METODOS DE CAMBIO DE ESTADO EN EL PROYECTO ***/
 	
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public Boolean solicitarFinanciacion() {
 		
 		if(Aplicacion.addSolicitudFinanciacionProyecto(this)) {
@@ -121,7 +152,10 @@ public abstract class Proyecto {
 		
 	}
 	
-	
+	/**
+	 * 
+	 * @param dinero
+	 */
 	public void financiarProyecto(int dinero) {
 		
 		String titulo;
@@ -142,6 +176,11 @@ public abstract class Proyecto {
 		
 		
 	}
+	
+	/**
+	 * 
+	 * @param motivo
+	 */
 	public void rechazarProyecto(String motivo) {
 		String titulo;
 		String descripcion;
@@ -163,11 +202,19 @@ public abstract class Proyecto {
 	
 	
 	//llamado desde el admin
+	
+	/**
+	 * 
+	 */
 	public void validarProyecto() {
 		this.estadoProyecto = EstadoProyecto.OPERATIVO;
 	}
 	
-	//lamado desde la applicacion al inicio con el control de fechas
+	//llamado desde la applicacion al inicio con el control de fechas
+	
+	/**
+	 * 
+	 */
 	public void caducarProyecto() {
 		this.estadoProyecto= EstadoProyecto.CADUCADO;
 	}
@@ -314,5 +361,16 @@ public abstract class Proyecto {
 		return estadoProyecto;
 	}
 
-}
 
+
+
+	
+
+
+
+	
+	
+	
+	
+	
+}

@@ -8,7 +8,7 @@ package BP;
 
 import java.util.HashSet;
 
-public abstract class Proponente {
+public abstract class Proponente implements java.io.Serializable {
 	private HashSet<Proyecto> proyectosPropuestos;
 
 	 /**

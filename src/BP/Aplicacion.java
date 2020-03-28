@@ -1,5 +1,6 @@
 package BP;
 
+import java.io.*;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.HashSet;
@@ -8,12 +9,11 @@ public class Aplicacion implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 1111;
 	private static Aplicacion INSTANCE = null;
-	
+	private String ficheroCarga = "ficheroCarga.obj";
 	//Admin
 	private String nombreAdmin;
 	private String contraseñaAdmin;
 	private Integer numMinApoyos;
-	
 	//Listados
 	//private static HashSet<Proyecto> proyectosSolicitandoFinanciacion;
 	private HashSet<Proyecto> proyectos;
@@ -55,7 +55,12 @@ public class Aplicacion implements java.io.Serializable {
 	
 	//Save
 	public boolean saveAplicacion() {
-		
+		try {
+			ObjectOutputStream objectFile = new ObjectOutputStream(new FileOutputStream(ficheroCarga));
+			objectFile.writeObject(getInstancia(this.nombreAdmin, this.contraseñaAdmin, this.numMinApoyos));
+		}catch(Exception e) {
+			
+		}
 	}
 	
 	//Load
