@@ -1,4 +1,4 @@
-package BP;
+package src.BP;
 
 import java.io.*;
 import java.time.temporal.ChronoUnit;
@@ -19,8 +19,7 @@ public class Aplicacion implements java.io.Serializable {
 	private HashSet<Proyecto> proyectos;
 	private HashSet<Proponente> proponentes;
 	private static int lastProjectUniqueID;
-	private static int lastColectivoUniqueID;
-	private static int lastUsuarioUniqueID;
+	
 	private Usuario usuarioConectado;//Usuario estandar que esta usando en este momento la apliacion
 	
 	
@@ -37,7 +36,6 @@ public class Aplicacion implements java.io.Serializable {
 		this.proyectos = new HashSet<Proyecto>();
 		this.proponentes = new HashSet<Proponente>();
 		this.lastProjectUniqueID = 0;
-		this.lastColectivoUniqueID =0;
 		
 	}
 	
@@ -241,36 +239,20 @@ public class Aplicacion implements java.io.Serializable {
 				}	
 			}
 		}
-		newUser = new Usuario(nif, nombre, contraseña, getNewUsuarioUniqueId(), EstadoUsuario.PENDIENTE);
+		newUser = new Usuario(nif, nombre, contraseña, EstadoUsuario.PENDIENTE);
 		newProp = (Proponente)newUser;
 		this.proponentes.add(newProp);
 		return newUser;
 	}
-	//revisar
-	public static Boolean addSolicitudFinanciacionProyecto(Proyecto p){
-		
-		if(getProyectosSolicitandoFinanciacion().contains(p)) {
-			return false;
-		}else {
-			getProyectosSolicitandoFinanciacion().add(p);
-			return true;
-		}
-		
-	}
+	
+	
+	
 
 	public static int getNewProjectUniqueId() {
 		return  lastProjectUniqueID +1;
 	}
 	
-	public static int getNewColectivoUniqueId() {
-		lastColectivoUniqueID++;
-		return  lastColectivoUniqueID;
-	}
 	
-	public static int getNewUsuarioUniqueId() {
-		lastUsuarioUniqueID++;
-		return  lastUsuarioUniqueID;
-	}
 	
 }
 
