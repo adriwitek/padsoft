@@ -36,7 +36,6 @@ public class Aplicacion implements java.io.Serializable {
 		this.proyectos = new HashSet<Proyecto>();
 		this.proponentes = new HashSet<Proponente>();
 		this.lastProjectUniqueID = 0;
-		this.lastColectivoUniqueID =0;
 		
 	}
 	
@@ -235,11 +234,13 @@ public class Aplicacion implements java.io.Serializable {
 				}	
 			}
 		}
-		newUser = new Usuario(nif, nombre, contraseña, getNewUsuarioUniqueId(), EstadoUsuario.PENDIENTE);
+		newUser = new Usuario(nif, nombre, contraseña, EstadoUsuario.PENDIENTE);
 		newProp = (Proponente)newUser;
 		this.proponentes.add(newProp);
 		return newUser;
 	}
+	
+	
 	//revisar
 	public static Boolean addSolicitudFinanciacionProyecto(Proyecto p){
 		

@@ -10,7 +10,6 @@ public class Usuario extends Proponente {
 	private String NIF;
 	private String nombre;
 	private String contraseña;
-	private int id;
 	private EstadoUsuario estado;
 	
 	//Notificaiones
@@ -29,10 +28,9 @@ public class Usuario extends Proponente {
 	
 	
 	/*Constructor*/
-	public Usuario(String nif, String nomb, String contra, int i, EstadoUsuario est) {
+	public Usuario(String nif, String nomb, String contra, EstadoUsuario est) {
 		NIF = nif; nombre = nomb; 
 		setContraseña(contra); 
-		id = i;
 		setEstado(est);
 		//this.proyectosPropuestos = new HashSet<Proyecto>();
 	}
