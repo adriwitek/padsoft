@@ -241,17 +241,7 @@ public class Aplicacion implements java.io.Serializable {
 	}
 	
 	
-	//revisar
-	public static Boolean addSolicitudFinanciacionProyecto(Proyecto p){
-		
-		if(getProyectosSolicitandoFinanciacion().contains(p)) {
-			return false;
-		}else {
-			getProyectosSolicitandoFinanciacion().add(p);
-			return true;
-		}
-		
-	}
+	
 
 	public static int getNewProjectUniqueId() {
 		return  lastProjectUniqueID +1;
