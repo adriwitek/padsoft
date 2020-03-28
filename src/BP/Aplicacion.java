@@ -9,6 +9,7 @@ public class Aplicacion {
 	private static final long serialVersionUID = 1111;
 	private static Aplicacion INSTANCE = null;
 	
+	
 	//Admin
 	private String nombreAdmin;
 	private String contraseñaAdmin;
