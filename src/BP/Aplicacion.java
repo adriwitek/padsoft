@@ -1,4 +1,4 @@
-package BP;
+package src.BP;
 
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
@@ -19,8 +19,7 @@ public class Aplicacion implements java.io.Serializable {
 	private HashSet<Proyecto> proyectos;
 	private HashSet<Proponente> proponentes;
 	private static int lastProjectUniqueID;
-	private static int lastColectivoUniqueID;
-	private static int lastUsuarioUniqueID;
+	
 	private Usuario usuarioConectado;//Usuario estandar que esta usando en este momento la apliacion
 	
 	
@@ -257,15 +256,7 @@ public class Aplicacion implements java.io.Serializable {
 		return  lastProjectUniqueID +1;
 	}
 	
-	public static int getNewColectivoUniqueId() {
-		lastColectivoUniqueID++;
-		return  lastColectivoUniqueID;
-	}
 	
-	public static int getNewUsuarioUniqueId() {
-		lastUsuarioUniqueID++;
-		return  lastUsuarioUniqueID;
-	}
 	
 }
 

@@ -1,4 +1,4 @@
-package BP;
+package src.BP;
 
 import java.util.List;
 
