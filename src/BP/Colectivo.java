@@ -11,7 +11,6 @@ import java.util.HashSet;
 public class Colectivo extends Proponente{
 	private String nombre;
 	private Usuario usuarioRepresentanteDeColectivo;
-	private Integer idColectivo;
 	private Colectivo colectivoPadre;
 	private HashSet<Usuario> participantes;
 	private HashSet<Colectivo> subcolectivos;
@@ -27,7 +26,6 @@ public class Colectivo extends Proponente{
 		
 		this.nombre = nombre;
 		usuarioRepresentanteDeColectivo = uRepresentante;
-		idColectivo = Aplicacion.getNewColectivoUniqueId();
 		this.colectivoPadre = colectivoPadre;
 		participantes = new HashSet<>();
 		subcolectivos = new HashSet<>();
@@ -161,14 +159,7 @@ public class Colectivo extends Proponente{
 	}
 
 
-	/**
-	 * @return the idColectivo
-	 */
-	public Integer getIdColectivo() {
-		return idColectivo;
-	}
-
-
+	
 
 	/**
 	 * @return the participantes

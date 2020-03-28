@@ -140,10 +140,6 @@ public class Usuario extends Proponente {
 
 
 
-	public int getId() {
-		return id;
-	}
-
 
 
 	public Notificacion getnRechazoRegistro() {
