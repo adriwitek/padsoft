@@ -1,4 +1,4 @@
-package fechasimulada;
+package src.fechaSimulada;
 
 import java.time.LocalDate;
 /**

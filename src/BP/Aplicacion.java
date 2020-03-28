@@ -9,7 +9,6 @@ public class Aplicacion {
 	private static final long serialVersionUID = 1111;
 	private static Aplicacion INSTANCE = null;
 	
-	
 	//Admin
 	private String nombreAdmin;
 	private String contraseñaAdmin;
@@ -21,7 +20,7 @@ public class Aplicacion {
 	private HashSet<Proponente> proponentes;
 	private static int lastProjectUniqueID;
 	private static int lastColectivoUniqueID;
-	
+	private static int lastUsuarioUniqueID;
 	private Usuario usuarioConectado;//Usuario estandar que esta usando en este momento la apliacion
 	
 	
@@ -42,7 +41,6 @@ public class Aplicacion {
 		
 	}
 	
-	
 	// **** CONSTRUCTOR SINGLETON ***/
 	public static Aplicacion getInstancia(String userAdmin, String passwordAdmin,Integer numMinApoyos) {
 		if (INSTANCE == null) {
@@ -50,14 +48,6 @@ public class Aplicacion {
 		}
 		return INSTANCE;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	//inicar app
@@ -96,7 +86,15 @@ public class Aplicacion {
 	//	***FUNCIONES LLAMADAS POR EL ADMIN***
 	
 	//loginAdmin
-
+	
+	public boolean loginAdmin(String user, String password) {
+		//Inicio sesion administrador
+		if(user.equals(this.nombreAdmin) && password.equals(this.contraseñaAdmin)) { 
+				return true;
+		}
+		return false;
+	}
+	
 	public HashSet<Usuario> getRegistrosPendientesDeAprobacion(){
 		
 		Usuario u;
@@ -128,7 +126,7 @@ public class Aplicacion {
 	}
 	
 
-	public HashSet<Proyecto> getProyectosSolicitandoFinanciadion(){
+	public HashSet<Proyecto> getProyectosSolicitandoFinanciacion(){
 		
 		HashSet<Proyecto> listado = new HashSet<Proyecto>();
 		for(Proyecto p: this.proyectos) {
@@ -153,18 +151,22 @@ public class Aplicacion {
 	
 	//	*** FUNCIONES LLAMADAS POR EL USUARIO LOGUEADO ***
 	
-	public Boolean loginUser(String user, String contraseña) {
+	public boolean loginUser(String nombre, String contraseña) {
+		Usuario  aux;
+		//Buscar usuario
+		for(Proponente p: this.proponentes ) {
+			if(p.getClass().getName() == "Usuario") {
+				aux = (Usuario)p;
+				//Coinciden creedenciales y el usuario está operativo
+				if(aux.getEstado().equals(EstadoUsuario.OPERATIVO) && aux.getNombre().equals(nombre) && aux.getContraseña().equals(contraseña)) {
+					usuarioConectado = aux;
+					return true;
+
+				}	
+			}
 		
-		
-	
-		//TODO-------------------------
-	
-		
-		
-		
-		
-		//comprobar que el estado es operativo!!!!!
-		
+		}
+		return false;
 	}
 	
 	public ProyectoSocial crearProyectoSocial(Proponente p,String nombre, String descrL, String descC , double cost ,String gSocial, Boolean nac){
@@ -219,19 +221,36 @@ public class Aplicacion {
 	
 	//	***FUNCIONES VARIAS INTERNAS***
 
-	
+	//nuevo registro usuario hecho por GSOLLA el 27/03/2020
+	public Usuario solicitarRegistro(String nif, String nombre, String contraseña) {
+		Usuario newUser, aux;
+		Proponente newProp;
+		//comprobar que en el sistema no hay usuarios con ese nombre
+		for(Proponente p: this.proponentes ) {
+			if(p.getClass().getName() == "Usuario") {
+				aux = (Usuario)p;
+				if(aux.getNombre().equals(nombre) || aux.getNIF().equals(nif)) {
+					return null;
+				}	
+			}
+		}
+		newUser = new Usuario(nif, nombre, contraseña, getNewUsuarioUniqueId(), EstadoUsuario.PENDIENTE);
+		newProp = (Proponente)newUser;
+		this.proponentes.add(newProp);
+		return newUser;
+	}
 	//revisar
 	public static Boolean addSolicitudFinanciacionProyecto(Proyecto p){
 		
-		if(proyectosSolicitandoFinanciacion.contains(p)) {
+		if(getProyectosSolicitandoFinanciacion().contains(p)) {
 			return false;
 		}else {
-			proyectosSolicitandoFinanciacion.add(p);
+			getProyectosSolicitandoFinanciacion().add(p);
 			return true;
 		}
 		
 	}
-	
+
 	public static int getNewProjectUniqueId() {
 		return  lastProjectUniqueID +1;
 	}
@@ -241,7 +260,11 @@ public class Aplicacion {
 		return  lastColectivoUniqueID;
 	}
 	
-	
+	public static int getNewUsuarioUniqueId() {
+		lastUsuarioUniqueID++;
+		return  lastUsuarioUniqueID;
+	}
 	
 }
+
 
