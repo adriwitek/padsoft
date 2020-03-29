@@ -28,10 +28,10 @@ public class Usuario extends Proponente {
 	
 	
 	/*Constructor*/
-	public Usuario(String nif, String nomb, String contra, EstadoUsuario est) {
+	public Usuario(String nif, String nomb, String contra) {
 		NIF = nif; nombre = nomb; 
 		setContraseña(contra); 
-		setEstado(est);
+		setEstado(EstadoUsuario.PENDIENTE);
 		//this.proyectosPropuestos = new HashSet<Proyecto>();
 	}
 	

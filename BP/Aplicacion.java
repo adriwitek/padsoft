@@ -18,7 +18,7 @@ public class Aplicacion implements java.io.Serializable {
 	//Listados
 	private HashSet<Proyecto> proyectos;
 	private HashSet<Proponente> proponentes;
-	private static int lastProjectUniqueID;
+	private  int lastProjectUniqueID;
 	
 	private Usuario usuarioConectado;//Usuario estandar que esta usando en este momento la apliacion
 	
@@ -244,7 +244,7 @@ public class Aplicacion implements java.io.Serializable {
 				}	
 			}
 		}
-		newUser = new Usuario(nif, nombre, contraseña, EstadoUsuario.PENDIENTE);
+		newUser = new Usuario(nif, nombre, contraseña);
 		this.proponentes.add(newUser);
 		return newUser;
 	}
@@ -252,7 +252,7 @@ public class Aplicacion implements java.io.Serializable {
 	
 	
 
-	public static int getNewProjectUniqueId() {
+	public  int getNewProjectUniqueId() {
 		return  lastProjectUniqueID +1;
 	}
 	

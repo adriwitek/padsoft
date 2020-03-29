@@ -10,7 +10,7 @@ public class TestUsuario {
 	private static Usuario testUser;
 	@BeforeClass
 	public static void setUp() throws Exception{
-	 testUser = new Usuario("12345678X", "Pepe", "1234", 1, EstadoUsuario.PENDIENTE);
+	 testUser = new Usuario("12345678X", "Pepe", "1234");
 	}
 	
 	@Test
