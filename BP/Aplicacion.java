@@ -9,6 +9,9 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.stream.Stream;
 
+import es.uam.eps.sadp.grants.CCGG;
+import es.uam.eps.sadp.grants.InvalidIDException;
+
 public class Aplicacion implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 1111;
@@ -87,7 +90,7 @@ public class Aplicacion implements java.io.Serializable {
 		
 		//Metodos de inicio y actuliazadion de datos de la App
 		caducarProyectosAntiguos();
-		//acabar
+		actualizarProyectosFinanciados();
 		return false;
 	}
 	
@@ -109,7 +112,31 @@ public class Aplicacion implements java.io.Serializable {
 	
 	
 	
-	
+	public void actualizarProyectosFinanciados() {
+		
+		Double financiacion;
+		for(Proyecto p: this.proyectos) {
+			if(p.getEstadoProyecto()== EstadoProyecto.PENDIENTEFINANCIACION) {
+				
+				try {
+					financiacion = CCGG.getGateway().getAmountGranted( p.getIdSeguimientoSistemaFinanciacion() );
+					
+					if(financiacion > 0) {
+						p.financiarProyecto(financiacion);
+					}else {
+						p.rechazarProyecto("El sistema de financiacion ha denegado la financiacion del proyecto");
+					}
+					
+				} catch (IOException | InvalidIDException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+			}
+			
+		}
+	}
 	
 	
 	

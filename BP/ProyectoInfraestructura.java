@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.HashSet;
 
+import es.uam.eps.sadp.grants.GrantRequest;
+
 public class ProyectoInfraestructura extends Proyecto {
 	private String croquisPath;
 	private String imgPath;
@@ -53,4 +55,23 @@ public class ProyectoInfraestructura extends Proyecto {
 		return false;
 	}
 	
+	
+	
+
+	public String getExtraData() {
+		String cadena = "";
+		if(this.distritos.size() == 1) {
+			
+			cadena= "El distrito del proyecto es" + this.distritos.toString();
+		}else {
+			cadena= "Los distritos a los que pertenece el proyecto son" + this.distritos.toString();
+		}
+		
+		return cadena;
+	}
+	
+	
+	public GrantRequest.ProjectKind getProjectKind(){
+		return GrantRequest.ProjectKind.Infrastructure;
+	}
 }

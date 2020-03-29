@@ -9,7 +9,10 @@ package BP;
 import java.util.Date;
 import java.util.HashSet;
 
-public abstract class Proyecto implements java.io.Serializable{
+import es.uam.eps.sadp.grants.CCGG;
+import es.uam.eps.sadp.grants.GrantRequest;
+
+public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 	
 	private static final long serialVersionUID = 1010;
 
@@ -24,6 +27,7 @@ public abstract class Proyecto implements java.io.Serializable{
 	private Date fechaCreacion, fechaUltimoApoyo;
 	private double coste, financiacionRecibida;
 	private EstadoProyecto estadoProyecto;
+	private String idSeguimientoSistemaFinanciacion;
 	
 	private HashSet<Usuario> usuariosSuscritosNotificaciones;
 	
@@ -40,6 +44,13 @@ public abstract class Proyecto implements java.io.Serializable{
 	
 	public Proyecto(Proponente p, Usuario uCreador,String nombre, String descrL, String descC , double cost ) {
 		
+		
+		if(nombre.length()> 25 ) {
+			throw new IllegalArgumentException("El nombre del proyecto no puede tener mas de 25 caracteres");
+		}else if( descC.length()>500) {
+			throw new IllegalArgumentException("La descripcion corta no puede tener una longituda superior a 500 caracteres");
+		}
+		
 		this.proponente = p;
 		this.usuarioCreador = uCreador;
 		this.usuariosaApoyantes = new HashSet<Usuario>();
@@ -52,6 +63,7 @@ public abstract class Proyecto implements java.io.Serializable{
 		this.setFinanciacionRecibida(0);
 		this.usuariosSuscritosNotificaciones= new HashSet<Usuario>()  ;
 		this.uniqueID= Aplicacion.getInstancia(null,null,null).getNewProjectUniqueId();
+		this.idSeguimientoSistemaFinanciacion = null;
 	}
 
 
@@ -135,6 +147,7 @@ public abstract class Proyecto implements java.io.Serializable{
 	/****METODOS DE CAMBIO DE ESTADO EN EL PROYECTO ***/
 	
 	/**
+	 * Si la api ha financiado el proyecto,llamar a este metodo desde App
 	 * 
 	 * @return
 	 */
@@ -142,6 +155,7 @@ public abstract class Proyecto implements java.io.Serializable{
 		
 		try {
 			if(this.getEstadoProyecto() == EstadoProyecto.OPERATIVO && this.getNumeroApoyosActualesValidos() >= Aplicacion.getInstancia(null, null, null).getNumeroMinimimoApoyos()) {
+				this.idSeguimientoSistemaFinanciacion= CCGG.getGateway().submitRequest(this);
 				this.estadoProyecto = EstadoProyecto.PENDIENTEFINANCIACION;
 				return true;
 			}
@@ -157,7 +171,7 @@ public abstract class Proyecto implements java.io.Serializable{
 	 * 
 	 * @param dinero
 	 */
-	public void financiarProyecto(int dinero) {
+	public void financiarProyecto(double dinero) {
 		
 		String titulo;
 		String descripcion;
@@ -195,7 +209,7 @@ public abstract class Proyecto implements java.io.Serializable{
 		Notificacion not;
 		
 		this.estadoProyecto = EstadoProyecto.FINANCIACIONRECHAZADO;
-
+		this.financiacionRecibida =0;
 		 titulo= "Financiacion Rechazada";
 		 descripcion= "La financiacion del proyecto: " + this.nombre + " ha sido rechazada por el administrador. El motivo del rechazo ha sido: " + motivo;
 		 not = new Notificacion(titulo,descripcion);
@@ -372,11 +386,37 @@ public abstract class Proyecto implements java.io.Serializable{
 
 
 	
-
-
+	public String 	getProjectTitle() {
+		return this.nombre;
+	}
 
 	
+	public String getProjectDescription() {
+		if(this.descripcionLarga.length()>500) {
+			return this.descripcionCorta;
+			
+		}else {
+			return this.descripcionLarga;
+		}
+	}
 	
+	
+	public double getRequestedAmount() {
+		return this.coste;
+	}
+
+
+
+
+
+
+
+	/**
+	 * @return the idSeguimientoSistemaFinanciacion
+	 */
+	public String getIdSeguimientoSistemaFinanciacion() {
+		return idSeguimientoSistemaFinanciacion;
+	}
 	
 	
 	
