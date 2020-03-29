@@ -52,6 +52,9 @@ public class Aplicacion implements java.io.Serializable {
 		
 	}
 	
+	
+
+	
 	// **** CONSTRUCTOR SINGLETON ***/
 	public static Aplicacion getInstancia(String userAdmin, String passwordAdmin,Integer numMinApoyos) {
 		if (INSTANCE == null) {
@@ -60,36 +63,40 @@ public class Aplicacion implements java.io.Serializable {
 		return INSTANCE;
 	}
 	
+	public void setInstancia(Aplicacion app) {
+		INSTANCE = app;
+	}
 	
 	//inicar app
 	
 	
 	//Save
+	//Save
 	public boolean saveAplicacion() {
 		try {
 			ObjectOutputStream objectFile = new ObjectOutputStream(new FileOutputStream(ficheroCarga));
 			objectFile.writeObject(getInstancia(this.nombreAdmin, this.contraseñaAdmin, this.numMinApoyos));
-		}catch(Exception e) {
-			
-		}
+			objectFile.close();
+			return true;
+		}catch(Exception e) { 
+			return false;
+		}	
 	}
-	
-
-
-	public Boolean loadAplicacion() {
-		//cargar app serializada
-		
-		
-		
-		//TODO
-		
-		
-		
+	//Load
+	public boolean loadAplicacion() {
+		try {
+			ObjectInputStream objectFile = new ObjectInputStream(new FileInputStream(ficheroCarga));
+			this.setInstancia((Aplicacion)objectFile.readObject());
+			objectFile.close();
+		}catch(Exception e) {
+			return false;
+		}
 		//Metodos de inicio y actuliazadion de datos de la App
 		caducarProyectosAntiguos();
 		//acabar
-		return false;
+		return true;
 	}
+
 	
 	
 	
@@ -136,7 +143,7 @@ public class Aplicacion implements java.io.Serializable {
 		Usuario u;
 		HashSet<Usuario> pendientes = new HashSet<Usuario>();
 		for(Proponente p: this.proponentes) {
-			if( p.getClass().getName() == "Usuario" ) {
+			if( p.getClass().getSimpleName().equals("Usuario")) {
 				u = (Usuario)p;
 				if(u.getEstado()== EstadoUsuario.PENDIENTE) {
 					pendientes.add(u);
@@ -197,7 +204,7 @@ public class Aplicacion implements java.io.Serializable {
 		Usuario  aux;
 		//Buscar usuario
 		for(Proponente p: this.proponentes ) {
-			if(p.getClass().getName() == "Usuario") {
+			if(p.getClass().getSimpleName().equals("Usuario")) {
 				aux = (Usuario)p;
 				//Coinciden creedenciales y el usuario está operativo
 				if(aux.getEstado().equals(EstadoUsuario.OPERATIVO) && aux.getNombre().equals(nombre) && aux.getContraseña().equals(contraseña)) {
@@ -215,7 +222,7 @@ public class Aplicacion implements java.io.Serializable {
 		
 		ProyectoSocial proyecto;
 		
-		if(p.getClass().getName().equals("Colectivo")) {
+		if(p.getClass().getSimpleName().equals("Colectivo")) {
 			Colectivo c = (Colectivo) p;
 			proyecto = new ProyectoSocial(p,c.getUsuarioRepresentanteDeColectivo() ,nombre,descrL, descC, cost,gSocial, nac);
 			
@@ -236,7 +243,7 @@ public class Aplicacion implements java.io.Serializable {
 	public ProyectoInfraestructura crearProyectoInfraestructura(Proponente p,String nombre, String descrL, String descC , double cost,String croquis ,String imagen,HashSet<String> distritos){
 		ProyectoInfraestructura proyecto;
 		
-		if(p.getClass().getName().equals("Colectivo")) {
+		if(p.getClass().getSimpleName().equals("Colectivo")) {
 			Colectivo c = (Colectivo) p;
 			proyecto = new ProyectoInfraestructura(p,c.getUsuarioRepresentanteDeColectivo() , nombre,  descrL,  descC ,  cost , croquis , imagen,distritos);
 			
@@ -268,7 +275,7 @@ public class Aplicacion implements java.io.Serializable {
 		
 		Usuario newUser, aux;
 		for(Proponente p: this.proponentes ) {
-			if(p.getClass().getName() == "Usuario") {
+			if(p.getClass().getSimpleName().equals("Usuario")) {
 				aux = (Usuario)p;
 				if(aux.getNombre().equals(nombre) || aux.getNIF().equals(nif)) {
 					return null;
@@ -300,7 +307,22 @@ public class Aplicacion implements java.io.Serializable {
 		return (HashSet<String>) Collections.unmodifiableSet(this.distritosPermitidos);
 	}
 	
-}
+	public HashSet<Proponente> getProponentes() {
+		return proponentes;
+	}
 
+	public void setProponentes(HashSet<Proponente> proponentes) {
+		this.proponentes = proponentes;
+	}
+	
+	public Usuario getUsuarioConectado() {
+		return usuarioConectado;
+	}
+
+	public void setUsuarioConectado(Usuario usuarioConectado) {
+		this.usuarioConectado = usuarioConectado;
+	}
+	
+}
 
 
