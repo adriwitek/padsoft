@@ -110,11 +110,7 @@ public abstract class Proyecto implements java.io.Serializable{
 	 * @return
 	 */
 	public String obtenerInformePopularidad(Usuario u) {
-		//TODO
-		//????
 		return "numero de apoyos: " + getNumeroApoyosActualesValidos();
-		
-		//Por ejemplo: tu proyecto es el número 28 más popular
 	}
 	
 	
@@ -144,10 +140,15 @@ public abstract class Proyecto implements java.io.Serializable{
 	 */
 	public Boolean solicitarFinanciacion() {
 		
-		if(Aplicacion.addSolicitudFinanciacionProyecto(this)) {
-			this.estadoProyecto = EstadoProyecto.PENDIENTEFINANCIACION;
-			return true;
-		}
+		try {
+			if(this.getEstadoProyecto() == EstadoProyecto.OPERATIVO && this.getNumeroApoyosActualesValidos() >= Aplicacion.getInstancia(null, null, null).getNumeroMinimimoApoyos()) {
+				this.estadoProyecto = EstadoProyecto.PENDIENTEFINANCIACION;
+				return true;
+			}
+			return false;
+			
+		}catch(Exception e) {}
+		
 		return false;
 		
 	}

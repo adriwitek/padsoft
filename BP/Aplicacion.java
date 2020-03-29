@@ -14,8 +14,8 @@ public class Aplicacion implements java.io.Serializable {
 	private String nombreAdmin;
 	private String contraseñaAdmin;
 	private Integer numMinApoyos;
+	private Boolean modoAdmin;
 	//Listados
-	//private static HashSet<Proyecto> proyectosSolicitandoFinanciacion;
 	private HashSet<Proyecto> proyectos;
 	private HashSet<Proponente> proponentes;
 	private static int lastProjectUniqueID;
@@ -30,9 +30,8 @@ public class Aplicacion implements java.io.Serializable {
 		this.nombreAdmin = nomAdmin;
 		this.contraseñaAdmin = contrasena; 
 		this.numMinApoyos = numMinApoyos;
+		this.modoAdmin = false;
 		
-		
-		//this.proyectosSolicitandoFinanciacion = new HashSet<Proyecto>();//Tambien se podrian recorrer los proyectos, revisar!
 		this.proyectos = new HashSet<Proyecto>();
 		this.proponentes = new HashSet<Proponente>();
 		this.lastProjectUniqueID = 0;
@@ -95,6 +94,7 @@ public class Aplicacion implements java.io.Serializable {
 	public boolean loginAdmin(String user, String password) {
 		//Inicio sesion administrador
 		if(user.equals(this.nombreAdmin) && password.equals(this.contraseñaAdmin)) { 
+			this.modoAdmin = true;
 				return true;
 		}
 		return false;
@@ -155,6 +155,12 @@ public class Aplicacion implements java.io.Serializable {
 	
 	
 	//	*** FUNCIONES LLAMADAS POR EL USUARIO LOGUEADO ***
+	
+	public void logOut() {
+		this.modoAdmin = false;
+		this.usuarioConectado = null;
+		this.saveAplicacion();
+	}
 	
 	public boolean loginUser(String nombre, String contraseña) {
 		Usuario  aux;
@@ -228,9 +234,8 @@ public class Aplicacion implements java.io.Serializable {
 
 	//nuevo registro usuario hecho por GSOLLA el 27/03/2020
 	public Usuario solicitarRegistro(String nif, String nombre, String contraseña) {
+		
 		Usuario newUser, aux;
-		Proponente newProp;
-		//comprobar que en el sistema no hay usuarios con ese nombre
 		for(Proponente p: this.proponentes ) {
 			if(p.getClass().getName() == "Usuario") {
 				aux = (Usuario)p;
@@ -240,8 +245,7 @@ public class Aplicacion implements java.io.Serializable {
 			}
 		}
 		newUser = new Usuario(nif, nombre, contraseña, EstadoUsuario.PENDIENTE);
-		newProp = (Proponente)newUser;
-		this.proponentes.add(newProp);
+		this.proponentes.add(newUser);
 		return newUser;
 	}
 	
@@ -252,8 +256,15 @@ public class Aplicacion implements java.io.Serializable {
 		return  lastProjectUniqueID +1;
 	}
 	
+	public Boolean isModoAdmin() {
+		return this.modoAdmin;
+	}
 	
+	public Integer getNumeroMinimimoApoyos() {
+		return numMinApoyos;
+	}
 	
+
 }
 
 
