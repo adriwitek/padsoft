@@ -45,5 +45,12 @@ public class ProyectoInfraestructura extends Proyecto {
 	
 	
 	
+	public Boolean addDistrito(String d) {
+		if(Aplicacion.getInstancia(null, null, null).getDistritos().contains(d)) {
+			this.distritos.add(d); 
+			return true;
+		}
+		return false;
+	}
 	
 }

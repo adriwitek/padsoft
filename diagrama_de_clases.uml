@@ -58,7 +58,7 @@
 			CodeGeneration
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Sun Mar 29 12:05:23 CEST 2020'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Sun Mar 29 12:07:57 CEST 2020'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.34(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -1129,6 +1129,25 @@
                 <UML:DataType href = 'http://argouml.org/profiles/uml14/default-uml14.xmi#-84-17--56-5-43645a83:11466542d86:-8000:000000000000087E'/>
               </UML:StructuralFeature.type>
             </UML:Attribute>
+            <UML:Operation xmi.id = '-64--88-1--124--209ad9ed:1712572eebb:-8000:0000000000000CC5'
+              name = 'addDistrito' visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
+              isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
+              isAbstract = 'false'>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88-1--124--209ad9ed:1712572eebb:-8000:0000000000000CC6'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Enumeration href = 'http://argouml.org/profiles/uml14/default-uml14.xmi#-84-17--56-5-43645a83:11466542d86:-8000:0000000000000880'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+                <UML:Parameter xmi.id = '-64--88-1--124--209ad9ed:1712572eebb:-8000:0000000000000CC7'
+                  name = 'd' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:DataType href = 'http://argouml.org/profiles/uml14/default-uml14.xmi#-84-17--56-5-43645a83:11466542d86:-8000:000000000000087E'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
           </UML:Classifier.feature>
         </UML:Class>
         <UML:Generalization xmi.id = '-87--2--72-44-2128bc0e:17057627584:-8000:0000000000000887'
@@ -4771,7 +4790,7 @@
     </group>
   </group>
   <group name="Fig4"
-       description="org.argouml.uml.diagram.static_structure.ui.FigClass[1680, 696, 149, 112]pathVisible=false;stereotypeView=0;operationsVisible=true;attributesVisible=true;"
+       description="org.argouml.uml.diagram.static_structure.ui.FigClass[1680, 696, 183, 112]pathVisible=false;stereotypeView=0;operationsVisible=true;attributesVisible=true;"
        href="-87--2--72-44-2128bc0e:17057627584:-8000:0000000000000883"
        fill="1"
        fillcolor="white"
@@ -4784,7 +4803,7 @@
     <rectangle name="Fig4.0"
       x="1680"
       y="696"
-      width="149"
+      width="183"
       height="112"
       fill="1"
       fillcolor="white"
@@ -4794,7 +4813,7 @@
     <text name="Fig4.1"
       x="1681"
       y="697"
-      width="147"
+      width="181"
       height="23"
       fill="0"
       fillcolor="white"
@@ -4833,7 +4852,7 @@
     <rectangle name="Fig4.3"
       x="1680"
       y="720"
-      width="149"
+      width="183"
       height="1"
       fill="1"
       fillcolor="black"
@@ -4841,7 +4860,7 @@
       strokecolor="black"
     />
     <group name="Fig4.4"
-         description="org.argouml.uml.diagram.ui.FigAttributesCompartment[1681, 721, 147, 61]"
+         description="org.argouml.uml.diagram.ui.FigAttributesCompartment[1681, 721, 181, 59]"
          href="-87--2--72-44-2128bc0e:17057627584:-8000:0000000000000883"
          fill="0"
          fillcolor="white"
@@ -4854,8 +4873,8 @@
       <rectangle name="Fig4.4.0"
         x="1681"
         y="721"
-        width="147"
-        height="61"
+        width="181"
+        height="59"
         fill="0"
         fillcolor="white"
         stroke="0"
@@ -4864,7 +4883,7 @@
       <text name="Fig4.4.1"
         x="1681"
         y="721"
-        width="147"
+        width="181"
         height="17"
         fill="0"
         fillcolor="white"
@@ -4880,7 +4899,7 @@
       <text name="Fig4.4.2"
         x="1681"
         y="738"
-        width="147"
+        width="181"
         height="17"
         fill="0"
         fillcolor="white"
@@ -4896,7 +4915,7 @@
       <text name="Fig4.4.3"
         x="1681"
         y="755"
-        width="147"
+        width="181"
         height="23"
         fill="0"
         fillcolor="white"
@@ -4912,8 +4931,8 @@
     </group>
     <rectangle name="Fig4.5"
       x="1680"
-      y="782"
-      width="149"
+      y="780"
+      width="183"
       height="1"
       fill="1"
       fillcolor="black"
@@ -4921,7 +4940,7 @@
       strokecolor="black"
     />
     <group name="Fig4.6"
-         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[1681, 783, 147, 23]"
+         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[1681, 781, 181, 25]"
          href="-87--2--72-44-2128bc0e:17057627584:-8000:0000000000000883"
          fill="0"
          fillcolor="white"
@@ -4933,14 +4952,30 @@
       
       <rectangle name="Fig4.6.0"
         x="1681"
-        y="783"
-        width="147"
-        height="23"
+        y="781"
+        width="181"
+        height="25"
         fill="0"
         fillcolor="white"
         stroke="0"
         strokecolor="black"
       />
+      <text name="Fig4.6.1"
+        x="1681"
+        y="781"
+        width="181"
+        height="23"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-addDistrito(d : String) : Boolean</text>
     </group>
   </group>
   <group name="Fig5"

@@ -178,9 +178,16 @@ public abstract class Proyecto implements java.io.Serializable{
 		
 	}
 	
+	
+	
+	
+	
+	//llamado desde el admin
+	
 	/**
 	 * 
 	 * @param motivo
+	 * 
 	 */
 	public void rechazarProyecto(String motivo) {
 		String titulo;
@@ -200,16 +207,15 @@ public abstract class Proyecto implements java.io.Serializable{
 		  
 	}
 	
-	
-	
-	//llamado desde el admin
-	
 	/**
 	 * 
 	 */
 	public void validarProyecto() {
 		this.estadoProyecto = EstadoProyecto.OPERATIVO;
 	}
+	
+	
+	
 	
 	//llamado desde la applicacion al inicio con el control de fechas
 	
