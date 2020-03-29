@@ -3,16 +3,23 @@ package BP;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.HashSet;
 
 public class ProyectoInfraestructura extends Proyecto {
-	private String distrito;
 	private String croquisPath;
 	private String imgPath;
-	
-	public ProyectoInfraestructura(Proponente p, Usuario uCreador,String nombre, String descrL, String descC , double cost,String dist,String croquis ,String imgPath) {
+	private HashSet<String> distritos;
+	public ProyectoInfraestructura(Proponente p, Usuario uCreador,String nombre, String descrL, String descC , double cost,String croquis ,String imgPath,HashSet<String> distritos) {
 		
 		super(p, uCreador, nombre, descrL, descC, cost);
-		this.distrito = dist;
+		this.distritos = new HashSet<String>();
+		
+		//Filtramos los distritos no admitidos
+		for(String d :distritos) {
+			if(Aplicacion.getInstancia(null, null, null).getDistritos().contains(d)) {
+				this.distritos.add(d); 
+			}
+		}
 		
 		
 		try {
@@ -29,6 +36,7 @@ public class ProyectoInfraestructura extends Proyecto {
 	        
 			Files.copy(sourceImg.toPath(), dest1.toPath());
 			Files.copy(sourceCroquis.toPath(), dest2.toPath());
+			
 			
 		} catch (IOException e) {
 			e.printStackTrace();

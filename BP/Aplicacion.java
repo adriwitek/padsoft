@@ -1,9 +1,13 @@
 package BP;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.temporal.ChronoUnit;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.stream.Stream;
 
 public class Aplicacion implements java.io.Serializable {
 	
@@ -19,6 +23,7 @@ public class Aplicacion implements java.io.Serializable {
 	private HashSet<Proyecto> proyectos;
 	private HashSet<Proponente> proponentes;
 	private  int lastProjectUniqueID;
+	private HashSet<String> distritosPermitidos;
 	
 	private Usuario usuarioConectado;//Usuario estandar que esta usando en este momento la apliacion
 	
@@ -35,6 +40,15 @@ public class Aplicacion implements java.io.Serializable {
 		this.proyectos = new HashSet<Proyecto>();
 		this.proponentes = new HashSet<Proponente>();
 		this.lastProjectUniqueID = 0;
+		
+		//Cargamos los distritos
+		distritosPermitidos = new HashSet<String>();
+		try (Stream<String> stream = Files.lines(Paths.get("distritos/Distritos.txt"))) {
+	        stream.forEach(distritosPermitidos::add);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	
 		
 	}
 	
@@ -60,7 +74,24 @@ public class Aplicacion implements java.io.Serializable {
 		}
 	}
 	
-	//Load
+
+
+	public Boolean loadAplicacion() {
+		//cargar app serializada
+		
+		
+		
+		//TODO
+		
+		
+		
+		//Metodos de inicio y actuliazadion de datos de la App
+		caducarProyectosAntiguos();
+		//acabar
+		return false;
+	}
+	
+	
 	
 	public void caducarProyectosAntiguos() {
 		
@@ -202,16 +233,16 @@ public class Aplicacion implements java.io.Serializable {
 	}
 	
 	
-	public ProyectoInfraestructura crearProyectoInfraestructura(Proponente p,String nombre, String descrL, String descC , double cost,String dist,String croquis ,String imagen){
+	public ProyectoInfraestructura crearProyectoInfraestructura(Proponente p,String nombre, String descrL, String descC , double cost,String croquis ,String imagen,HashSet<String> distritos){
 		ProyectoInfraestructura proyecto;
 		
 		if(p.getClass().getName().equals("Colectivo")) {
 			Colectivo c = (Colectivo) p;
-			proyecto = new ProyectoInfraestructura(p,c.getUsuarioRepresentanteDeColectivo() , nombre,  descrL,  descC ,  cost , dist, croquis , imagen);
+			proyecto = new ProyectoInfraestructura(p,c.getUsuarioRepresentanteDeColectivo() , nombre,  descrL,  descC ,  cost , croquis , imagen,distritos);
 			
 		}else {//Usuario
 			Usuario u = (Usuario) p;
-			proyecto = new ProyectoInfraestructura(u,u , nombre,  descrL,  descC ,  cost , dist, croquis , imagen);			
+			proyecto = new ProyectoInfraestructura(u,u , nombre,  descrL,  descC ,  cost , croquis , imagen,distritos);			
 		}
 		p.proponerProyecto(proyecto);
 		
@@ -265,6 +296,10 @@ public class Aplicacion implements java.io.Serializable {
 	}
 	
 
+	public HashSet<String> getDistritos(){
+		return (HashSet<String>) Collections.unmodifiableSet(this.distritosPermitidos);
+	}
+	
 }
 
 
