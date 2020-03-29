@@ -1,6 +1,8 @@
 package BP;
 
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.temporal.ChronoUnit;
@@ -10,7 +12,8 @@ import java.util.HashSet;
 import java.util.stream.Stream;
 
 import es.uam.eps.sadp.grants.CCGG;
-import es.uam.eps.sadp.grants.InvalidIDException;
+
+
 
 public class Aplicacion implements java.io.Serializable {
 	
@@ -75,6 +78,7 @@ public class Aplicacion implements java.io.Serializable {
 		}catch(Exception e) {
 			
 		}
+		return true;
 	}
 	
 
@@ -127,7 +131,7 @@ public class Aplicacion implements java.io.Serializable {
 						p.rechazarProyecto("El sistema de financiacion ha denegado la financiacion del proyecto");
 					}
 					
-				} catch (IOException | InvalidIDException e) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -326,6 +330,12 @@ public class Aplicacion implements java.io.Serializable {
 	public HashSet<String> getDistritos(){
 		return (HashSet<String>) Collections.unmodifiableSet(this.distritosPermitidos);
 	}
+
+	
+	public Usuario getUsuarioConectado() {
+		return this.usuarioConectado;
+	}
+
 	
 }
 

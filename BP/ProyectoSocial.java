@@ -1,5 +1,6 @@
 package BP;
 
+import BP.Proyecto;
 import es.uam.eps.sadp.grants.GrantRequest;
 
 public class ProyectoSocial extends Proyecto {

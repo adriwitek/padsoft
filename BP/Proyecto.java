@@ -12,6 +12,8 @@ import java.util.HashSet;
 import es.uam.eps.sadp.grants.CCGG;
 import es.uam.eps.sadp.grants.GrantRequest;
 
+
+
 public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 	
 	private static final long serialVersionUID = 1010;
