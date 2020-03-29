@@ -1,11 +1,11 @@
-package tests;
-import static org.junit.Assert.*;
-
+package BP.tests;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import src.BP.EstadoUsuario;
-import src.BP.Usuario;
+import BP.EstadoUsuario;
+import BP.Usuario;
+
+
 public class TestUsuario {
 	private static Usuario testUser;
 	@BeforeClass

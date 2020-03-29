@@ -1,4 +1,4 @@
-package src.BP;
+package BP;
 
 import java.io.File;
 import java.io.IOException;

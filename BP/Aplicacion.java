@@ -1,4 +1,4 @@
-package src.BP;
+package BP;
 
 import java.io.*;
 import java.time.temporal.ChronoUnit;

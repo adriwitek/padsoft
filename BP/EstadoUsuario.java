@@ -1,4 +1,4 @@
-package src.BP;
+package BP;
 
 /** 
 * 
@@ -6,6 +6,6 @@ package src.BP;
 * y Diego Tapia diego.tapias@estudiante.uam.es
 */
 
-public enum EstadoProyecto {
-	PENDIENTEVALIDACION, RECHAZADO, CADUCADO, OPERATIVO, PENDIENTEFINANCIACION, FINANCIACIONACEPTADA, FINANCIACIONRECHAZADO;
+public enum EstadoUsuario {
+	 PENDIENTE, RECHAZADO, OPERATIVO, BLOQUEADO;
 }

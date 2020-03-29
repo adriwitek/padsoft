@@ -1,4 +1,4 @@
-package src.fechaSimulada;
+package BP.demostrador;
 
 import java.time.LocalDate;
 /**

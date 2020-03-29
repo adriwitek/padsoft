@@ -1,4 +1,4 @@
-package src.BP;
+package BP;
 
 public class ProyectoSocial extends Proyecto{
 	private Boolean nacional;

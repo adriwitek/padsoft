@@ -1,6 +1,7 @@
-package src.BP;
+package BP.demostrador;
 
 import java.io.IOException;
+import BP.*;
 
 public class main {
 	
