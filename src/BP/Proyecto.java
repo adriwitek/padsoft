@@ -8,6 +8,7 @@ package BP;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 
 import es.uam.eps.sadp.grants.CCGG;
 import es.uam.eps.sadp.grants.GrantRequest;
@@ -47,7 +48,8 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 	public Proyecto(Proponente p, Usuario uCreador,String nombre, String descrL, String descC , double cost ) {
 		
 		
-		if(nombre.length()> 25 ) {
+		if(nombre.length()> 25 || nombre.length() == 0 || Objects.isNull(nombre) || Objects.isNull(p) || Objects.isNull(uCreador) 
+				|| Objects.isNull(descrL) || Objects.isNull(descC)) {
 			throw new IllegalArgumentException("El nombre del proyecto no puede tener mas de 25 caracteres");
 		}else if( descC.length()>500) {
 			throw new IllegalArgumentException("La descripcion corta no puede tener una longituda superior a 500 caracteres");
@@ -76,24 +78,34 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 	
 	/**
 	 * 
-	 * @param p
+	 * @param u
 	 */
-	public void apoyarProyecto(Proponente p) {
+	public void apoyarProyecto(Usuario u ) {
 		if(this.estadoProyecto == EstadoProyecto.OPERATIVO) {
-			
-			if( p.getClass().getName() == "Usuario") {
-				this.usuariosaApoyantes.add((Usuario) p);
-			}else {
-				
-				for(Usuario u : ((Colectivo) p).getParticipantes() ) {
-					this.usuariosaApoyantes.add(u);
-				}
-				
-			}
-			
+			this.usuariosaApoyantes.add(u);
 		}
 		
 	}
+	
+	
+	
+	/**
+	 * 
+	 * @param p
+	 */
+	public void apoyarProyectoComoColectivo(Colectivo c) {
+		if(this.estadoProyecto == EstadoProyecto.OPERATIVO) {
+			for(Usuario u : c.getParticipantes() ) {
+				this.usuariosaApoyantes.add(u);
+			}
+
+		}
+		
+	}
+	
+	
+	
+	
 	
 	/**
 	 * 

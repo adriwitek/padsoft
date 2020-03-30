@@ -58,7 +58,7 @@
 			CodeGeneration
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Sun Mar 29 12:07:54 CEST 2020'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Sun Mar 29 20:44:12 CEST 2020'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.34(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -869,7 +869,7 @@
                 <UML:Parameter xmi.id = '-64--88-1--124-5d540df6:170eb38405b:-8000:0000000000000C6A'
                   name = 'dinero' isSpecification = 'false' kind = 'in'>
                   <UML:Parameter.type>
-                    <UML:Class xmi.idref = '-64--88-1--124-5d540df6:170eb38405b:-8000:0000000000000C6B'/>
+                    <UML:Class xmi.idref = '-64--88-1--124--69fe1d91:17103d8c990:-8000:0000000000000C97'/>
                   </UML:Parameter.type>
                 </UML:Parameter>
               </UML:BehavioralFeature.parameter>
@@ -907,6 +907,21 @@
                   name = 'return' isSpecification = 'false' kind = 'return'/>
               </UML:BehavioralFeature.parameter>
             </UML:Operation>
+            <UML:Attribute xmi.id = '-64--88-1--124--209ad9ed:1712572eebb:-8000:0000000000000CCA'
+              name = 'idSeguimientoSistemaFinanciacion' visibility = 'public' isSpecification = 'false'
+              ownerScope = 'instance' changeability = 'changeable' targetScope = 'instance'>
+              <UML:StructuralFeature.multiplicity>
+                <UML:Multiplicity xmi.id = '-64--88-1--124--209ad9ed:1712572eebb:-8000:0000000000000CCB'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '-64--88-1--124--209ad9ed:1712572eebb:-8000:0000000000000CCC'
+                      lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:StructuralFeature.multiplicity>
+              <UML:StructuralFeature.type>
+                <UML:DataType href = 'http://argouml.org/profiles/uml14/default-uml14.xmi#-84-17--56-5-43645a83:11466542d86:-8000:000000000000087E'/>
+              </UML:StructuralFeature.type>
+            </UML:Attribute>
           </UML:Classifier.feature>
         </UML:Class>
         <UML:Class xmi.id = '-87--2--72-44-2128bc0e:17057627584:-8000:0000000000000878'
@@ -1141,7 +1156,11 @@
                   </UML:Parameter.type>
                 </UML:Parameter>
                 <UML:Parameter xmi.id = '-64--88-1--124--209ad9ed:1712572eebb:-8000:0000000000000CC7'
-                  name = 'd' isSpecification = 'false' kind = 'in'/>
+                  name = 'd' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:DataType href = 'http://argouml.org/profiles/uml14/default-uml14.xmi#-84-17--56-5-43645a83:11466542d86:-8000:000000000000087E'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
               </UML:BehavioralFeature.parameter>
             </UML:Operation>
           </UML:Classifier.feature>
@@ -4286,7 +4305,7 @@
       strokecolor="black"
     />
     <group name="Fig2.4"
-         description="org.argouml.uml.diagram.ui.FigAttributesCompartment[1497, 25, 326, 186]"
+         description="org.argouml.uml.diagram.ui.FigAttributesCompartment[1497, 25, 326, 195]"
          href="-87--2--72-44-2128bc0e:17057627584:-8000:0000000000000877"
          fill="0"
          fillcolor="white"
@@ -4300,7 +4319,7 @@
         x="1497"
         y="25"
         width="326"
-        height="186"
+        height="195"
         fill="0"
         fillcolor="white"
         stroke="0"
@@ -4438,7 +4457,7 @@
         x="1497"
         y="161"
         width="326"
-        height="23"
+        height="17"
         fill="0"
         fillcolor="white"
         stroke="0"
@@ -4450,10 +4469,26 @@
         textsize="12"
         justification="Left"
       >-financiacionRecibida : Double</text>
+      <text name="Fig2.4.10"
+        x="1497"
+        y="178"
+        width="326"
+        height="23"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >+idSeguimientoSistemaFinanciacion : String</text>
     </group>
     <rectangle name="Fig2.5"
       x="1496"
-      y="211"
+      y="220"
       width="328"
       height="1"
       fill="1"
@@ -4462,7 +4497,7 @@
       strokecolor="black"
     />
     <group name="Fig2.6"
-         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[1497, 212, 326, 186]"
+         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[1497, 221, 326, 178]"
          href="-87--2--72-44-2128bc0e:17057627584:-8000:0000000000000877"
          fill="0"
          fillcolor="white"
@@ -4474,9 +4509,9 @@
       
       <rectangle name="Fig2.6.0"
         x="1497"
-        y="212"
+        y="221"
         width="326"
-        height="186"
+        height="178"
         fill="0"
         fillcolor="white"
         stroke="0"
@@ -4484,7 +4519,7 @@
       />
       <text name="Fig2.6.1"
         x="1497"
-        y="212"
+        y="221"
         width="326"
         height="17"
         fill="0"
@@ -4500,7 +4535,7 @@
       >+obtenerInformeDePopularidad(u : Usuario) : String</text>
       <text name="Fig2.6.2"
         x="1497"
-        y="229"
+        y="238"
         width="326"
         height="17"
         fill="0"
@@ -4516,7 +4551,7 @@
       >+getNumeroApoyosActualesValidos() : Integer</text>
       <text name="Fig2.6.3"
         x="1497"
-        y="246"
+        y="255"
         width="326"
         height="17"
         fill="0"
@@ -4532,7 +4567,7 @@
       >+solicitarFinanciacion() : void</text>
       <text name="Fig2.6.4"
         x="1497"
-        y="263"
+        y="272"
         width="326"
         height="17"
         fill="0"
@@ -4548,7 +4583,7 @@
       >+apoyarProyecto(p : Proponente)</text>
       <text name="Fig2.6.5"
         x="1497"
-        y="280"
+        y="289"
         width="326"
         height="17"
         fill="0"
@@ -4564,7 +4599,7 @@
       >+suscribirseANotificacionesDeProyecto() : void</text>
       <text name="Fig2.6.6"
         x="1497"
-        y="297"
+        y="306"
         width="326"
         height="17"
         fill="0"
@@ -4577,10 +4612,10 @@
         bold="false"
         textsize="12"
         justification="Left"
-      >+financiarProyecto(dinero : int)</text>
+      >+financiarProyecto(dinero : double)</text>
       <text name="Fig2.6.7"
         x="1497"
-        y="314"
+        y="323"
         width="326"
         height="17"
         fill="0"
@@ -4596,7 +4631,7 @@
       >+rechazarProyecto(motivo : String)</text>
       <text name="Fig2.6.8"
         x="1497"
-        y="331"
+        y="340"
         width="326"
         height="17"
         fill="0"
@@ -4612,7 +4647,7 @@
       >+validarProyecto()</text>
       <text name="Fig2.6.9"
         x="1497"
-        y="348"
+        y="357"
         width="326"
         height="23"
         fill="0"
@@ -4786,7 +4821,7 @@
     </group>
   </group>
   <group name="Fig4"
-       description="org.argouml.uml.diagram.static_structure.ui.FigClass[1680, 696, 149, 112]pathVisible=false;stereotypeView=0;operationsVisible=true;attributesVisible=true;"
+       description="org.argouml.uml.diagram.static_structure.ui.FigClass[1680, 696, 183, 112]pathVisible=false;stereotypeView=0;operationsVisible=true;attributesVisible=true;"
        href="-87--2--72-44-2128bc0e:17057627584:-8000:0000000000000883"
        fill="1"
        fillcolor="white"
@@ -4799,7 +4834,7 @@
     <rectangle name="Fig4.0"
       x="1680"
       y="696"
-      width="149"
+      width="183"
       height="112"
       fill="1"
       fillcolor="white"
@@ -4809,7 +4844,7 @@
     <text name="Fig4.1"
       x="1681"
       y="697"
-      width="147"
+      width="181"
       height="23"
       fill="0"
       fillcolor="white"
@@ -4848,7 +4883,7 @@
     <rectangle name="Fig4.3"
       x="1680"
       y="720"
-      width="149"
+      width="183"
       height="1"
       fill="1"
       fillcolor="black"
@@ -4856,7 +4891,7 @@
       strokecolor="black"
     />
     <group name="Fig4.4"
-         description="org.argouml.uml.diagram.ui.FigAttributesCompartment[1681, 721, 147, 59]"
+         description="org.argouml.uml.diagram.ui.FigAttributesCompartment[1681, 721, 181, 59]"
          href="-87--2--72-44-2128bc0e:17057627584:-8000:0000000000000883"
          fill="0"
          fillcolor="white"
@@ -4869,7 +4904,7 @@
       <rectangle name="Fig4.4.0"
         x="1681"
         y="721"
-        width="147"
+        width="181"
         height="59"
         fill="0"
         fillcolor="white"
@@ -4879,7 +4914,7 @@
       <text name="Fig4.4.1"
         x="1681"
         y="721"
-        width="147"
+        width="181"
         height="17"
         fill="0"
         fillcolor="white"
@@ -4895,7 +4930,7 @@
       <text name="Fig4.4.2"
         x="1681"
         y="738"
-        width="147"
+        width="181"
         height="17"
         fill="0"
         fillcolor="white"
@@ -4911,7 +4946,7 @@
       <text name="Fig4.4.3"
         x="1681"
         y="755"
-        width="147"
+        width="181"
         height="23"
         fill="0"
         fillcolor="white"
@@ -4928,7 +4963,7 @@
     <rectangle name="Fig4.5"
       x="1680"
       y="780"
-      width="149"
+      width="183"
       height="1"
       fill="1"
       fillcolor="black"
@@ -4936,7 +4971,7 @@
       strokecolor="black"
     />
     <group name="Fig4.6"
-         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[1681, 781, 147, 25]"
+         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[1681, 781, 181, 25]"
          href="-87--2--72-44-2128bc0e:17057627584:-8000:0000000000000883"
          fill="0"
          fillcolor="white"
@@ -4949,7 +4984,7 @@
       <rectangle name="Fig4.6.0"
         x="1681"
         y="781"
-        width="147"
+        width="181"
         height="25"
         fill="0"
         fillcolor="white"
@@ -4959,7 +4994,7 @@
       <text name="Fig4.6.1"
         x="1681"
         y="781"
-        width="175"
+        width="181"
         height="23"
         fill="0"
         fillcolor="white"
@@ -4971,7 +5006,7 @@
         bold="false"
         textsize="12"
         justification="Left"
-      >-addDistrito(d:String) : Boolean</text>
+      >-addDistrito(d : String) : Boolean</text>
     </group>
   </group>
   <group name="Fig5"
@@ -7387,7 +7422,7 @@
     </group>
   </group>
   <group name="Fig33"
-       description="org.argouml.uml.diagram.static_structure.ui.FigInterface[1944, 72, 293, 144]pathVisible=false;stereotypeView=0;operationsVisible=true;operationsVisible=true"
+       description="org.argouml.uml.diagram.static_structure.ui.FigInterface[2272, 40, 293, 144]pathVisible=false;stereotypeView=0;operationsVisible=true;operationsVisible=true"
        href="-64--88-1--124--69fe1d91:17103d8c990:-8000:0000000000000C79"
        fill="1"
        fillcolor="white"
@@ -7398,8 +7433,8 @@
     </private>
     
     <rectangle name="Fig33.0"
-      x="1944"
-      y="72"
+      x="2272"
+      y="40"
       width="293"
       height="144"
       fill="1"
@@ -7408,8 +7443,8 @@
       strokecolor="black"
     />
     <text name="Fig33.1"
-      x="1945"
-      y="73"
+      x="2273"
+      y="41"
       width="291"
       height="43"
       fill="0"
@@ -7424,7 +7459,7 @@
       justification="Center"
     >+ CCGG</text>
     <group name="Fig33.2"
-         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[1945, 73, 291, 20]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[2273, 41, 291, 20]"
          href="-64--88-1--124--69fe1d91:17103d8c990:-8000:0000000000000C79"
          fill="0"
          fillcolor="white"
@@ -7435,8 +7470,8 @@
       </private>
       
       <rectangle name="Fig33.2.0"
-        x="1945"
-        y="73"
+        x="2273"
+        y="41"
         width="291"
         height="20"
         fill="0"
@@ -7445,8 +7480,8 @@
         strokecolor="black"
       />
       <text name="Fig33.2.1"
-        x="1945"
-        y="73"
+        x="2273"
+        y="41"
         width="291"
         height="18"
         fill="0"
@@ -7462,8 +7497,8 @@
       >&lt;&lt;interface&gt;&gt;</text>
     </group>
     <rectangle name="Fig33.3"
-      x="1944"
-      y="116"
+      x="2272"
+      y="84"
       width="293"
       height="1"
       fill="1"
@@ -7472,7 +7507,7 @@
       strokecolor="black"
     />
     <group name="Fig33.4"
-         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[1945, 117, 291, 98]"
+         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[2273, 85, 291, 98]"
          href="-64--88-1--124--69fe1d91:17103d8c990:-8000:0000000000000C79"
          fill="0"
          fillcolor="white"
@@ -7483,8 +7518,8 @@
       </private>
       
       <rectangle name="Fig33.4.0"
-        x="1945"
-        y="117"
+        x="2273"
+        y="85"
         width="291"
         height="98"
         fill="0"
@@ -7493,8 +7528,8 @@
         strokecolor="black"
       />
       <text name="Fig33.4.1"
-        x="1945"
-        y="117"
+        x="2273"
+        y="85"
         width="291"
         height="17"
         fill="0"
@@ -7509,8 +7544,8 @@
         justification="Left"
       >+getAmountGranted​(id : String) : Double</text>
       <text name="Fig33.4.2"
-        x="1945"
-        y="134"
+        x="2273"
+        y="102"
         width="291"
         height="17"
         fill="0"
@@ -7525,8 +7560,8 @@
         justification="Left"
       >+getGateway() : CCGG</text>
       <text name="Fig33.4.3"
-        x="1945"
-        y="151"
+        x="2273"
+        y="119"
         width="291"
         height="17"
         fill="0"
@@ -7541,8 +7576,8 @@
         justification="Left"
       >+setDate​(date : LocalDate)</text>
       <text name="Fig33.4.4"
-        x="1945"
-        y="168"
+        x="2273"
+        y="136"
         width="291"
         height="17"
         fill="0"
@@ -7557,8 +7592,8 @@
         justification="Left"
       >+submitRequest​(request : GrantRequest) : String</text>
       <text name="Fig33.4.5"
-        x="1945"
-        y="185"
+        x="2273"
+        y="153"
         width="291"
         height="23"
         fill="0"
@@ -7575,7 +7610,7 @@
     </group>
   </group>
   <group name="Fig34"
-       description="org.argouml.uml.diagram.static_structure.ui.FigInterface[2104, 280, 328, 138]pathVisible=false;stereotypeView=0;operationsVisible=true;operationsVisible=true"
+       description="org.argouml.uml.diagram.static_structure.ui.FigInterface[1848, 32, 328, 138]pathVisible=false;stereotypeView=0;operationsVisible=true;operationsVisible=true"
        href="-64--88-1--124--69fe1d91:17103d8c990:-8000:0000000000000C8B"
        fill="1"
        fillcolor="white"
@@ -7586,8 +7621,8 @@
     </private>
     
     <rectangle name="Fig34.0"
-      x="2104"
-      y="280"
+      x="1848"
+      y="32"
       width="328"
       height="138"
       fill="1"
@@ -7596,8 +7631,8 @@
       strokecolor="black"
     />
     <text name="Fig34.1"
-      x="2105"
-      y="281"
+      x="1849"
+      y="33"
       width="326"
       height="43"
       fill="0"
@@ -7612,7 +7647,7 @@
       justification="Center"
     >+ GrantRequest</text>
     <group name="Fig34.2"
-         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[2105, 281, 326, 20]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[1849, 33, 326, 20]"
          href="-64--88-1--124--69fe1d91:17103d8c990:-8000:0000000000000C8B"
          fill="0"
          fillcolor="white"
@@ -7623,8 +7658,8 @@
       </private>
       
       <rectangle name="Fig34.2.0"
-        x="2105"
-        y="281"
+        x="1849"
+        y="33"
         width="326"
         height="20"
         fill="0"
@@ -7633,8 +7668,8 @@
         strokecolor="black"
       />
       <text name="Fig34.2.1"
-        x="2105"
-        y="281"
+        x="1849"
+        y="33"
         width="326"
         height="18"
         fill="0"
@@ -7650,8 +7685,8 @@
       >&lt;&lt;interface&gt;&gt;</text>
     </group>
     <rectangle name="Fig34.3"
-      x="2104"
-      y="324"
+      x="1848"
+      y="76"
       width="328"
       height="1"
       fill="1"
@@ -7660,7 +7695,7 @@
       strokecolor="black"
     />
     <group name="Fig34.4"
-         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[2105, 325, 326, 93]"
+         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[1849, 77, 326, 93]"
          href="-64--88-1--124--69fe1d91:17103d8c990:-8000:0000000000000C8B"
          fill="0"
          fillcolor="white"
@@ -7671,8 +7706,8 @@
       </private>
       
       <rectangle name="Fig34.4.0"
-        x="2105"
-        y="325"
+        x="1849"
+        y="77"
         width="326"
         height="93"
         fill="0"
@@ -7681,8 +7716,8 @@
         strokecolor="black"
       />
       <text name="Fig34.4.1"
-        x="2105"
-        y="325"
+        x="1849"
+        y="77"
         width="326"
         height="17"
         fill="0"
@@ -7697,8 +7732,8 @@
         justification="Left"
       >+getExtraData() : String</text>
       <text name="Fig34.4.2"
-        x="2105"
-        y="342"
+        x="1849"
+        y="94"
         width="326"
         height="17"
         fill="0"
@@ -7713,8 +7748,8 @@
         justification="Left"
       >+getProjectDescription() : String</text>
       <text name="Fig34.4.3"
-        x="2105"
-        y="359"
+        x="1849"
+        y="111"
         width="326"
         height="17"
         fill="0"
@@ -7729,8 +7764,8 @@
         justification="Left"
       >+getProjectKind() : ProjectKind</text>
       <text name="Fig34.4.4"
-        x="2105"
-        y="376"
+        x="1849"
+        y="128"
         width="326"
         height="17"
         fill="0"
@@ -7745,8 +7780,8 @@
         justification="Left"
       >+getProjectTitle() : String</text>
       <text name="Fig34.4.5"
-        x="2105"
-        y="393"
+        x="1849"
+        y="145"
         width="326"
         height="23"
         fill="0"

@@ -7,6 +7,7 @@ package BP;
 */
 
 import java.util.HashSet;
+import java.util.Objects;
 
 public class Colectivo extends Proponente{
 	private String nombre;
@@ -23,6 +24,9 @@ public class Colectivo extends Proponente{
 	  */
 	
 	public Colectivo(Usuario uRepresentante, String nombre,Colectivo colectivoPadre) {
+		if(nombre.isEmpty()|| Objects.isNull(uRepresentante) ||  Objects.isNull(colectivoPadre) ||  Objects.isNull(nombre) ) {
+				throw new IllegalArgumentException("Debes de introducir los datos validos");
+			}
 		
 		this.nombre = nombre;
 		usuarioRepresentanteDeColectivo = uRepresentante;

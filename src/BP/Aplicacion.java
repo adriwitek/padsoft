@@ -9,6 +9,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 import es.uam.eps.sadp.grants.CCGG;
@@ -37,6 +38,10 @@ public class Aplicacion implements java.io.Serializable {
 	
 	//Constructor
 	public Aplicacion(String nomAdmin, String contrasena, Integer numMinApoyos) {
+		
+		if(nomAdmin.isEmpty()|| Objects.isNull(nomAdmin) ) {
+			throw new IllegalArgumentException("Debes de introducir los datos validos");
+		}
 		
 		this.nombreAdmin = nomAdmin;
 		this.contraseñaAdmin = contrasena; 
@@ -201,6 +206,8 @@ public class Aplicacion implements java.io.Serializable {
 				listado.add(p);
 			}
 		}
+		//return (HashSet<Proyecto>) Collections.unmodifiableSet(listado);
+		//posteriormente hay que modificarlos, controlar la llamada a la fucnion
 		return listado;
 	} 
 	

@@ -1,9 +1,11 @@
 package BP.tests;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
-import BP.EstadoUsuario;
-import BP.Usuario;
+import org.junit.BeforeClass;
+
+import BP.*;
+
 
 
 public class TestUsuario {

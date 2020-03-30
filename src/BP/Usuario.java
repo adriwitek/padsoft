@@ -1,6 +1,8 @@
 package BP;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Usuario extends Proponente {
 	
@@ -18,22 +20,21 @@ public class Usuario extends Proponente {
 	private List<Notificacion> nSuscripcionEstadoProyecto;
 	private List<Notificacion> nRechazoProyectoProponente;
 	
-
-	//private HashSet<Proyecto> proyectosPropuestos;
-
-	
-	
-
-	
 	
 	
 	/*Constructor*/
 	public Usuario(String nif, String nomb, String contra) {
+		if(nif.isEmpty()|| nombre.isEmpty()|| contra.isEmpty()
+			|| Objects.isNull(nif) ||  Objects.isNull(nombre)|| Objects.isNull(contra)) {
+			throw new IllegalArgumentException("Debes de introducir los datos obligatorios y no pueden ser vacios");
+		}
 		NIF = nif; nombre = nomb; 
 		setContraseña(contra); 
 		setEstado(EstadoUsuario.PENDIENTE);
-		//this.proyectosPropuestos = new HashSet<Proyecto>();
 	}
+	
+	
+	
 	
 	
 	
@@ -155,13 +156,13 @@ public class Usuario extends Proponente {
 
 
 	public List<Notificacion> getnSuscripcionEstadoProyecto() {
-		return nSuscripcionEstadoProyecto;
+		return  Collections.unmodifiableList(nSuscripcionEstadoProyecto);
 	}
 
 
 
 	public List<Notificacion> getnRechazoProyectoProponente() {
-		return nRechazoProyectoProponente;
+		return Collections.unmodifiableList(nRechazoProyectoProponente);
 	}
 	
 	

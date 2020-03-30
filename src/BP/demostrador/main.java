@@ -1,7 +1,8 @@
-package src.BP.demostrador;
+package BP.demostrador;
+import java.io.IOException;
+
 import BP.*;
 
-import java.io.IOException;
 
 public class main {
 	

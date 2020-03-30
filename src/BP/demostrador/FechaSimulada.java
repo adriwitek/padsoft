@@ -1,4 +1,4 @@
-package src.BP.demostrador;
+package BP.demostrador;
 
 import java.time.LocalDate;
 /**
