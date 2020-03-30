@@ -85,7 +85,7 @@ public class ColectivoTest {
 	@Test
 	public void getSubcolectivosTest() {
 		HashSet<Colectivo> sub = colectivo1.getSubcolectivos();
-		assertTrue(sub.isEmpty());
+		assertNotEquals(sub, null);
 	}
 	
 	@Test

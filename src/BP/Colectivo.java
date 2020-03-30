@@ -188,7 +188,8 @@ public class Colectivo extends Proponente{
 
 
 	public HashSet<Colectivo> getSubcolectivos() {
-		return (HashSet<Colectivo>) Collections.unmodifiableSet(this.subcolectivos);
+		//return (HashSet<Colectivo>) Collections.unmodifiableSet(this.subcolectivos);
+		return this.subcolectivos;
 	}
 	
 

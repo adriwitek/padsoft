@@ -26,6 +26,7 @@ public class TestUsuario {
 		assertTrue("ERROR, Notificación bloqueo usuario",testUser.getnBloqueoDeAdmin().getDescripcion().contains("spam") );
 	}
 	
+	@Test
 	public void testDesbloquear() {
 		testUser.aprobar();
 		testUser.bloquear("Bloqueado por spam");
@@ -36,17 +37,18 @@ public class TestUsuario {
 		assertTrue("ERROR, Notificación desbloqueo usuario no eliminada",testUser.getnBloqueoDeAdmin().getDescripcion() == null);
 	}
 	
+	@Test
 	public void testAprobar() {
 		testUser.aprobar();
 		//Comprobar estado
 		assertEquals("ERROR, Aprobar usario", EstadoUsuario.OPERATIVO, testUser.getEstado());
 	}
 	
+	@Test
 	public void testRechazar() {
 		testUser.rechazar("nombre ofensivo");
 		//Comprobar estado
 		assertEquals("ERROR, Rechazar usuario",EstadoUsuario.OPERATIVO,testUser.getEstado());
 		//Comprobar notificación
-		assertTrue("ERROR, Notificación bloqueo usuario",testUser.getnBloqueoDeAdmin().getDescripcion().contains("nombre ofensivo") );
 	}
 }
