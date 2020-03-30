@@ -15,6 +15,9 @@ public class main {
 		app.solicitarRegistro("123456789A", "Guillermo", "1234");
 		Usuario user=app.solicitarRegistro("987654321A", "Adrian", "1234");
 		app.solicitarRegistro("123456789A", "Tapia", "1234");
+		
+		
+		//LOGUIN COMO USER
 		app.loginUser("Guillermo", "1234");
 		//VALIDAMOS EL REGISTRO
 		for(Proponente p: app.getRegistrosPendientesDeAprobacion()) {

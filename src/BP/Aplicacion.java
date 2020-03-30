@@ -1,7 +1,9 @@
 package BP;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -72,7 +74,11 @@ public class Aplicacion implements java.io.Serializable {
 	}
 	
 	
-	//inicar app
+	
+	
+	
+	
+	/***** Funciones de Carga/Guardado ****/
 	
 	
 	//Save
@@ -87,6 +93,9 @@ public class Aplicacion implements java.io.Serializable {
 	}
 	
 
+	
+	
+	
 
 	public Boolean loadAplicacion() {
 		//cargar app serializada
@@ -94,13 +103,28 @@ public class Aplicacion implements java.io.Serializable {
 		
 		
 		//TODO
+		try {
+			
+	        FileInputStream fileIn= new FileInputStream(ficheroCarga);
+            ObjectInputStream entrada= new ObjectInputStream(fileIn);
+            Aplicacion app = (Aplicacion)entrada.readObject();
+            if(app == null) {
+            	return false;
+            }else {
+            	INSTANCE = app;
+            	//Metodos de inicio y actuliazadion de datos de la App
+    			caducarProyectosAntiguos();
+    			actualizarProyectosFinanciados();
+    			return true;
+            }
 		
+		}catch(Exception e) {
+			
+			INSTANCE = getInstancia(this.nombreAdmin, this.contraseñaAdmin, this.numMinApoyos);
+			return true;
+		}
 		
-		
-		//Metodos de inicio y actuliazadion de datos de la App
-		caducarProyectosAntiguos();
-		actualizarProyectosFinanciados();
-		return false;
+	
 	}
 	
 	
@@ -169,6 +193,8 @@ public class Aplicacion implements java.io.Serializable {
 	
 	public HashSet<Usuario> getRegistrosPendientesDeAprobacion(){
 		
+		if(!this.modoAdmin) return null;
+		
 		Usuario u;
 		HashSet<Usuario> pendientes = new HashSet<Usuario>();
 		for(Proponente p: this.proponentes) {
@@ -185,21 +211,25 @@ public class Aplicacion implements java.io.Serializable {
 	
 	
 	
-	public void validarRegistro(Usuario u) {
+	public Boolean validarRegistro(Usuario u) {
+		if(!this.modoAdmin) return false ;
 		u.aprobar();
+		return true;
 	}
 	
 	
 	
-	public void rechazarRegistro(Usuario u,String motivo) {
+	public Boolean rechazarRegistro(Usuario u,String motivo) {
+		if(!this.modoAdmin) return false;
 		u.rechazar(motivo);
 		this.proponentes.remove(u);
-		
+		return true;
 	}
 	
 
 	public HashSet<Proyecto> getProyectosSolicitandoFinanciacion(){
 		
+		if(!this.modoAdmin) return null;
 		HashSet<Proyecto> listado = new HashSet<Proyecto>();
 		for(Proyecto p: this.proyectos) {
 			if(p.getEstadoProyecto() == EstadoProyecto.PENDIENTEFINANCIACION) {

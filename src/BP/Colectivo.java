@@ -1,5 +1,7 @@
 package BP;
 
+import java.util.Collections;
+
 /** 
 * 
 * @author Adián Rubio adrian.rubiop@estudiante.uam.es, Guillermo Solla guillermo.solla@estudiante.uam.es 
@@ -178,6 +180,15 @@ public class Colectivo extends Proponente{
 	 */
 	public Colectivo getColectivoPadre() {
 		return this.colectivoPadre;
+	}
+
+
+
+
+
+
+	public HashSet<Colectivo> getSubcolectivos() {
+		return (HashSet<Colectivo>) Collections.unmodifiableSet(this.subcolectivos);
 	}
 	
 
