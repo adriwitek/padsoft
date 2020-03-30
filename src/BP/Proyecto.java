@@ -169,16 +169,27 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 	 * @return
 	 */
 	public Boolean solicitarFinanciacion() {
+		int contadorIntentosMaximos = 4;
 		
-		try {
-			if(this.getEstadoProyecto() == EstadoProyecto.OPERATIVO && this.getNumeroApoyosActualesValidos() >= Aplicacion.getInstancia(null, null, null).getNumeroMinimimoApoyos()) {
-				this.idSeguimientoSistemaFinanciacion= CCGG.getGateway().submitRequest(this);
-				this.estadoProyecto = EstadoProyecto.PENDIENTEFINANCIACION;
-				return true;
-			}
-			return false;
+		while(contadorIntentosMaximos !=0) {
 			
-		}catch(Exception e) {}
+			try {
+				if(this.getEstadoProyecto() == EstadoProyecto.OPERATIVO && this.getNumeroApoyosActualesValidos() >= Aplicacion.getInstancia(null, null, null).getNumeroMinimimoApoyos()) {
+					this.idSeguimientoSistemaFinanciacion= CCGG.getGateway().submitRequest(this);
+					this.estadoProyecto = EstadoProyecto.PENDIENTEFINANCIACION;
+					return true;
+				}else {
+					return false;
+				}
+				
+			}catch(Exception e) {
+				contadorIntentosMaximos--;
+			}
+			
+			
+			
+		}
+	
 		
 		return false;
 		

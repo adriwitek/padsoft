@@ -175,13 +175,16 @@ public class Aplicacion implements java.io.Serializable {
 					
 					if(financiacion > 0) {
 						p.financiarProyecto(financiacion);
-					}else {
+					}else{
 						p.rechazarProyecto("El sistema de financiacion ha denegado la financiacion del proyecto");
 					}
 					
-				} catch (Exception e) {
+				} catch ( NullPointerException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+				
+				
+				} catch ( Exception e) {
+				// TODO Auto-generated catch block
 				}
 				
 				

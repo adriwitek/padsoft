@@ -1,9 +1,11 @@
 package BP.demostrador;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 
 import BP.*;
+import es.uam.eps.sadp.grants.CCGG;
 
 
 public class main {
@@ -11,8 +13,9 @@ public class main {
 	public static void main(String[] args) throws ClassNotFoundException, IOException {
 		
 		
-		Aplicacion app = Aplicacion.getInstancia("admin", "1234",4); //login del admin
+		Aplicacion app = Aplicacion.getInstancia("admin", "1234",1); //login del admin
 		app.loadAplicacion();
+		
 		
 		// USUARIOS
 		Usuario u1 = app.solicitarRegistro("1234456789A", "Guillermo", "1234");
@@ -20,19 +23,19 @@ public class main {
 		Usuario u3 =app.solicitarRegistro("12344567893A", "Tapia", "1234");
 		Usuario u4 =app.solicitarRegistro("123424563337893A", "U4", "1234");
 		Usuario u5 =app.solicitarRegistro("12344567423893A", "U5", "1234");
-
-		
-		if(u1 == null ||u2 == null || u3 == null   ) System.out.println("Los u devueltos son nulos");
+		if(u1 == null ||u2 == null || u3 == null || u4 == null || u5 == null   ) System.out.println("Los u devueltos son nulos");
 		
 		
 		
 		
 		//COLECTIVOS Y SUBCOLECTIVOS 
-		
 		Colectivo c1 = new Colectivo(u1,"Colectivo 1",null);
 		Colectivo c2 = new Colectivo(u2,"Colectivo 2",null);
 		Colectivo subC2 = c2.crearSubcolectivo("Sucolectivo 2,hijo de colectivo 2");
 		subC2.suscribirseColectivo(u4);
+		
+		
+		
 		
 		//VALIDAMOS LOS REGISTROS
 		app.loginAdmin("admin", "1234");
@@ -49,6 +52,8 @@ public class main {
 
 	
 		
+		
+		
 		//SAVE Y LOAD
 		app.saveAplicacion();
 		app.exit();
@@ -59,7 +64,11 @@ public class main {
 
 		
 		
+		
+		
 		//CREACION PROYECTOS
+        System.out.println("-------CREACION PROYECTOS --------------" );
+
 		ProyectoSocial pSocial1 = app.crearProyectoSocial( u1, "Proyecto Social 1", "Descrip Laaarga", "Description corta" ,  10000.0 ,"Grupo 1",  true); //debe acpetarse la financiacion en el
 		ProyectoSocial pSocial2 = app.crearProyectoSocial( u2, "Proyecto Social 2", "Descrip Laaarga", "Description corta" ,  500.0 ,"Grupo 2",  false); //debe acpetarse la financiacion en el
 		ProyectoSocial pSocial3 = app.crearProyectoSocial( u2, "Proyecto Social 3", "Descrip Laaarga", "Description corta" ,  1000000.0 ,"Grupo 3",  true); //debe acpetarse la financiacion en el
@@ -78,6 +87,8 @@ public class main {
 		ProyectoInfraestructura pInfraestructura2 =  app.crearProyectoInfraestructura(u1 ,"P. Infra 2",  "Descrip Laaarga", "Description corta",  100000, pathCroquis2 , pathImg2,setDistritos2);
 
 		
+		
+		
 		//PROPOSICION DE PROYECTOS
 		u2.proponerProyecto(pSocial1);
 		u2.proponerProyecto(pInfraestructura1);
@@ -89,8 +100,10 @@ public class main {
 		
 		
 		
-		//APOYOS
 		
+		//APOYOS
+        System.out.println("-------APOYOS --------------" );
+
 		pSocial1.validarProyecto();
 		pSocial2.validarProyecto();
 		pSocial3.validarProyecto();
@@ -110,15 +123,65 @@ public class main {
 		System.out.println("Mismo numero de apoyos al apoyar en colectivo que contiene al subcoletivo=:" + pInfraestructura2.getNumeroApoyosActualesValidos() );
 
 		
-		//CADUCIDAD ---> OJO: Se retrasa artificialmente la fecha del ultimo voto para comprobar que el metodo(que no se modifica) funciona correctamente, dado que la clase auxiliar proporcionada
+		
+		
+		
+		//CADUCIDAD
+		//			---> OJO: Se retrasa artificialmente la fecha del ultimo voto para comprobar que el metodo(que no se modifica) funciona correctamente, dado que la clase auxiliar proporcionada
 		// 						requeriria de mas ajustes para su integracion con nuestra implementacion
 		System.out.println("BEFORE:El estado de pSocial1 es: " +pSocial1.getEstadoProyecto() + " y la fecha de su ultimo apoyo es: " + pSocial1.getFechaUltimoApoyo());
 
+		@SuppressWarnings("deprecation")
 		Date dateAtrasada = new Date(2020,1,1);
 		pSocial1.setFechaUltimoApoyo(dateAtrasada);
 		app.caducarProyectosAntiguos();//Importante la llamada a esta funcion, para actualizar los estados de los proyectos
-		System.out.println("AFTER: El estado de pSocial1 es: " +pSocial1.getEstadoProyecto() + " y la fecha de su ultimo apoyo es: " + pSocial1.getFechaUltimoApoyo());
+		System.out.println("AFTER: El estado de pSocial1 es: " + pSocial1.getEstadoProyecto() + " y la fecha de su ultimo apoyo es: " + pSocial1.getFechaUltimoApoyo());
 
+		
+		
+		
+		
+		
+		//FINANCIACION
+        System.out.println("-------FINANCIACION --------------" );
+
+		pSocial2.apoyarProyecto(u3);
+		pSocial3.apoyarProyecto(u4);
+		
+		if(!pSocial2.solicitarFinanciacion()) System.out.println("NO HA SIDO POSIBLE LA SOLICITUD DE FINANCIACION DE pSocial2");
+		if(!pSocial3.solicitarFinanciacion()) System.out.println("NO HA SIDO POSIBLE LA SOLICITUD DE FINANCIACION DE pSocial3");
+
+		FechaSimulada f = new FechaSimulada();
+		CCGG.getGateway().setDate(f.fijarFecha(1, 1, 2050) );
+	    /*
+		Date dateAdelantada = new Date(2020,04,14);
+		pSocial2.setFechaUltimoApoyo(dateAdelantada);
+		pSocial3.setFechaUltimoApoyo(dateAdelantada);
+		*/
+        app.actualizarProyectosFinanciados();
+		
+   
+        //proyecto 2 no deberia recibirla y proyecto 3 si
+        System.out.println("pSocial2 :  " + pSocial2.getEstadoProyecto());
+        if(pSocial2.getEstadoProyecto() == EstadoProyecto.FINANCIACIONACEPTADA) System.out.println("pSocial2 ha sido financiado con " + pSocial2.getFinanciacionRecibida() + " del coste inicial de : " +  pSocial2.getCoste());
+        if(pSocial2.getEstadoProyecto() == EstadoProyecto.FINANCIACIONRECHAZADO) System.out.println(" OK:La financiacion de pSocial2 ha sido rechazada " + pSocial2.getFinanciacionRecibida() + " del coste inicial de : " +  pSocial2.getCoste());
+
+        System.out.println("pSocial3 :  " + pSocial3.getEstadoProyecto());
+        if(pSocial3.getEstadoProyecto() == EstadoProyecto.FINANCIACIONACEPTADA) System.out.println("OK:pSocial3 ha sido financiado con " + pSocial3.getFinanciacionRecibida() + " del coste inicial de : " +  pSocial3.getCoste());
+        if(pSocial3.getEstadoProyecto() == EstadoProyecto.FINANCIACIONRECHAZADO) System.out.println("La financiacion de pSocial2 ha sido rechazada " + pSocial3.getFinanciacionRecibida() + " del coste inicial de : " +  pSocial3.getCoste());
+
+		
+		
+        
+        
+		//REPETICION SAVE Y LOAD
+		app.saveAplicacion();
+		app.exit();
+		if(!app.loadAplicacion()) System.out.println("No se ha podido cargar el backup");
+		
+		
+		
+		
 		
 		
 		//FINANCIACION
