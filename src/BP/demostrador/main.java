@@ -1,5 +1,6 @@
 package BP.demostrador;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashSet;
 
 import BP.*;
@@ -10,7 +11,7 @@ public class main {
 	public static void main(String[] args) throws ClassNotFoundException, IOException {
 		
 		
-		Aplicacion app = Aplicacion.getInstancia("admin", "1234",100); //login del admin
+		Aplicacion app = Aplicacion.getInstancia("admin", "1234",4); //login del admin
 		app.loadAplicacion();
 		
 		// USUARIOS
@@ -28,7 +29,6 @@ public class main {
 		
 		//COLECTIVOS Y SUBCOLECTIVOS 
 		
-			//TODO
 		Colectivo c1 = new Colectivo(u1,"Colectivo 1",null);
 		Colectivo c2 = new Colectivo(u2,"Colectivo 2",null);
 		Colectivo subC2 = c2.crearSubcolectivo("Sucolectivo 2,hijo de colectivo 2");
@@ -110,7 +110,15 @@ public class main {
 		System.out.println("Mismo numero de apoyos al apoyar en colectivo que contiene al subcoletivo=:" + pInfraestructura2.getNumeroApoyosActualesValidos() );
 
 		
-		//CADUCIDAD
+		//CADUCIDAD ---> OJO: Se retrasa artificialmente la fecha del ultimo voto para comprobar que el metodo(que no se modifica) funciona correctamente, dado que la clase auxiliar proporcionada
+		// 						requeriria de mas ajustes para su integracion con nuestra implementacion
+		System.out.println("BEFORE:El estado de pSocial1 es: " +pSocial1.getEstadoProyecto() + " y la fecha de su ultimo apoyo es: " + pSocial1.getFechaUltimoApoyo());
+
+		Date dateAtrasada = new Date(2020,1,1);
+		pSocial1.setFechaUltimoApoyo(dateAtrasada);
+		app.caducarProyectosAntiguos();//Importante la llamada a esta funcion, para actualizar los estados de los proyectos
+		System.out.println("AFTER: El estado de pSocial1 es: " +pSocial1.getEstadoProyecto() + " y la fecha de su ultimo apoyo es: " + pSocial1.getFechaUltimoApoyo());
+
 		
 		
 		//FINANCIACION

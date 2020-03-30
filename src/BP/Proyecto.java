@@ -62,7 +62,7 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 		this.setDescripcionLarga(descrL); 
 		this.setDescripcionCorta(descC);
 		this.fechaCreacion = new Date();
-		this.setFechaUltimoApoyo(null);
+		this.setFechaUltimoApoyo(new Date());
 		this.coste = cost;
 		this.setFinanciacionRecibida(0);
 		this.usuariosSuscritosNotificaciones= new HashSet<Usuario>()  ;
@@ -83,6 +83,8 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 	public void apoyarProyecto(Usuario u ) {
 		if(this.estadoProyecto == EstadoProyecto.OPERATIVO) {
 			this.usuariosaApoyantes.add(u);
+			Date d1 = new Date();
+			setFechaUltimoApoyo(d1);
 		}
 		
 	}
@@ -100,7 +102,8 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 			}
 
 		}
-		
+		Date d1 = new Date();
+		setFechaUltimoApoyo(d1);
 	}
 	
 	
