@@ -26,10 +26,10 @@ public class ProyectoInfraestructura extends Proyecto {
 		
 		try {
 			File sourceImg = new File(imgPath);
-			File sourceCroquis = new File(croquisPath);
+			File sourceCroquis = new File(croquis);
 
-			this.imgPath = "img/" + nombre + "_" + this.uniqueID + "_img";
-			this.imgPath = "img/" + nombre + "_" + this.uniqueID + "_croquis";
+			this.imgPath = "img/" +   this.uniqueID + "img" + sourceImg.getName();
+			this.croquisPath = "img/" +  this.uniqueID + "_croquis" +sourceCroquis.getName();
 
 			
 	        File dest1 = new File(this.imgPath);

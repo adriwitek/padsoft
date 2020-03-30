@@ -26,7 +26,7 @@ public class Colectivo extends Proponente{
 	  */
 	
 	public Colectivo(Usuario uRepresentante, String nombre,Colectivo colectivoPadre) {
-		if(nombre.isEmpty()|| Objects.isNull(uRepresentante) ||  Objects.isNull(colectivoPadre) ||  Objects.isNull(nombre) ) {
+		if(nombre.isEmpty()|| Objects.isNull(uRepresentante)  ||  Objects.isNull(nombre) ) {
 				throw new IllegalArgumentException("Debes de introducir los datos validos");
 			}
 		

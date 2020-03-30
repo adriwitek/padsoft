@@ -387,7 +387,8 @@ public class Aplicacion implements java.io.Serializable {
 	
 
 	public HashSet<String> getDistritos(){
-		return (HashSet<String>) Collections.unmodifiableSet(this.distritosPermitidos);
+		//return (HashSet<String>) Collections.unmodifiableSet(this.distritosPermitidos);
+		return this.distritosPermitidos;
 	}
 
 	
