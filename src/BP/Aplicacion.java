@@ -120,14 +120,20 @@ public class Aplicacion implements java.io.Serializable {
 		
 		}catch(Exception e) {
 			
-			INSTANCE = getInstancia(this.nombreAdmin, this.contraseñaAdmin, this.numMinApoyos);
-			return true;
+			
 		}
 		
-	
+		return false;
 	}
 	
 	
+	
+	public boolean exit() {
+		this.logOut();
+		INSTANCE = null;
+		return  saveAplicacion();
+		
+	}
 	
 	public void caducarProyectosAntiguos() {
 		
@@ -258,8 +264,11 @@ public class Aplicacion implements java.io.Serializable {
 	public void logOut() {
 		this.modoAdmin = false;
 		this.usuarioConectado = null;
-		this.saveAplicacion();
 	}
+	
+	
+
+	
 	
 	public boolean loginUser(String nombre, String contraseña) {
 		Usuario  aux;

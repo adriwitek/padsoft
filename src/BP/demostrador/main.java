@@ -12,27 +12,39 @@ public class main {
 		Aplicacion app = Aplicacion.getInstancia("admin", "1234",100); //login del admin
 		app.loadAplicacion();
 		//añadir usuarios
-		app.solicitarRegistro("123456789A", "Guillermo", "1234");
-		Usuario user=app.solicitarRegistro("987654321A", "Adrian", "1234");
-		app.solicitarRegistro("123456789A", "Tapia", "1234");
+		Usuario u1 = app.solicitarRegistro("123456789A", "Guillermo", "1234");
+		Usuario u2 =app.solicitarRegistro("987654321A", "Adrian", "1234");
+		Usuario u3 =app.solicitarRegistro("123456789A", "Tapia", "1234");
 		
 		
-		//LOGUIN COMO USER
+		//VALIDAMOS LOS REGISTROS
+		app.loginAdmin("admin", "1234");
+		
+		if (app.getRegistrosPendientesDeAprobacion().size() !=3) System.out.println("Error, el numero de usuairo pendientes de aprobacion no coincide");
+		app.validarRegistro(u1);
+		app.validarRegistro(u2);
+		app.validarRegistro(u3);
+		app.logOut();
+		
+		
+		
 		app.loginUser("Guillermo", "1234");
-		//VALIDAMOS EL REGISTRO
-		for(Proponente p: app.getRegistrosPendientesDeAprobacion()) {
-			if(p.getClass().getSimpleName().equals("Usuario") ) {
-				user=(Usuario)p;
-				app.validarRegistro(user);
-				System.out.println("Validando registro de Usuario:" + user.getNombre() +" "+ user.getNIF());
-			}
-				
-		}	
-		app.loginUser("Guillermo", "12344");
-		System.out.println(app.getUsuarioConectado());
-		//inmobi.leeFicheroEntrada("entrada.txt");
+		System.out.println("Usuario logueado: " + app.getUsuarioConectado());
 		app.saveAplicacion();
 	
+		app.exit();
+		
+		
+		if(!app.loadAplicacion()) { 
+			System.out.println("No se ha podido cargar el backup");
+
+		}
+		
+		if (app.loginUser("Guillermo", "1234")) System.out.println("Error, no se ha podido iniciar sesion");
+
+		
+		
+		
 	}
 	
 
