@@ -77,6 +77,7 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 	
 	
 	/**
+	 * Esta funcion permite que un usuario apoye a un proyecto especifico, siempre y cuando el proyecto este en estado OPERATIVO
 	 * 
 	 * @param u
 	 */
@@ -92,6 +93,8 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 	
 	
 	/**
+	 * Esta funcion permite que un colectivo apoye a un proyecto haciendo que todos sus miembros tambien lo apoyen (Apoyar como colectivo),
+	 * siempre y cuando el estado del proyecto sea OPERATIVO
 	 * 
 	 * @param p
 	 */
@@ -111,6 +114,7 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 	
 	
 	/**
+	 * Esta funcion muestra el numero de apoyos a un proyecto siempre y cuando los apoyantes se encuentren en estado OPERATIVO
 	 * 
 	 * @return the n
 	 */
@@ -134,6 +138,7 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 	
 	
 	/**
+	 * Esta funcion devuele el informe de popularidad, es decir, el numero de apoyos validos de un proyecto
 	 * 
 	 * @param u
 	 * @return
@@ -149,6 +154,7 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 	//Funcion llamada desde usuario
 	
 	/**
+	 * Esta funcion permite que un usuario se suscriba a las notificaciones de un proyecto
 	 * 
 	 * @param u
 	 */
@@ -196,6 +202,7 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 	}
 	
 	/**
+	 * Esta funcion permite financiar un proyecto a una cantidad especifica de dinero
 	 * 
 	 * @param dinero
 	 */
@@ -227,6 +234,7 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 	//llamado desde el admin
 	
 	/**
+	 * Esta funcion rechaza un proyecto que ha sido propuesto, dejando el proyecto en estado FINANCIACIONRECHAZADO
 	 * 
 	 * @param motivo
 	 * 
@@ -250,7 +258,7 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 	}
 	
 	/**
-	 * 
+	 * Esta funcion se encarga de validar un proyecto propuesto
 	 */
 	public void validarProyecto() {
 		this.estadoProyecto = EstadoProyecto.OPERATIVO;
@@ -262,7 +270,7 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 	//llamado desde la applicacion al inicio con el control de fechas
 	
 	/**
-	 * 
+	 * Esta funcion se encarga de caducar un proyecto especifico
 	 */
 	public void caducarProyecto() {
 		this.estadoProyecto= EstadoProyecto.CADUCADO;
@@ -277,6 +285,8 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 	
 
 	/**
+	 * Esta funcion se encarga de devolver el proponente del proyecto
+	 * 
 	 * @return the proponente
 	 */
 	public Proponente getProponente() {
@@ -286,6 +296,8 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 
 
 	/**
+	 * Esta funcion se encarga de devolver el usuario creador de un proyecto
+	 * 
 	 * @return the usuarioCreador
 	 */
 	public Usuario getUsuarioCreador() {
@@ -296,6 +308,8 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 
 
 	/**
+	 * Esta funcion devuelve el nombre de un proyecto
+	 * 
 	 * @return the nombre
 	 */
 	public String getNombre() {
@@ -306,6 +320,8 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 
 
 	/**
+	 * Esta funcion se encarga de devolver la descripcion larga de un proyecto
+	 * 
 	 * @return the descripcionLarga
 	 */
 	public String getDescripcionLarga() {
@@ -316,6 +332,8 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 
 
 	/**
+	 * Esta funcion se encarga de introducir una decripcion larga a un proyecto
+	 * 
 	 * @param descripcionLarga the descripcionLarga to set
 	 */
 	public void setDescripcionLarga(String descripcionLarga) {
@@ -326,6 +344,8 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 
 
 	/**
+	 * Esta funcion devuelve la descripcion corta de un proyecto
+	 * 
 	 * @return the descripcionCorta
 	 */
 	public String getDescripcionCorta() {
@@ -336,6 +356,8 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 
 
 	/**
+	 * Esta funcion se encarga de introducir un descripcion corta en un proyecto
+	 * 
 	 * @param descripcionCorta the descripcionCorta to set
 	 */
 	public void setDescripcionCorta(String descripcionCorta) {
@@ -346,6 +368,8 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 
 
 	/**
+	 * Esta funcion se encarga de devolver la fecha de creacion de un proyecto
+	 * 
 	 * @return the fechaCreacion
 	 */
 	public Date getFechaCreacion() {
@@ -356,6 +380,8 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 
 
 	/**
+	 * Esta funcion devuelve la fecha del ultimo apoyo realizado al proyecto
+	 * 
 	 * @return the fechaUltimoApoyo
 	 */
 	public Date getFechaUltimoApoyo() {
@@ -366,6 +392,8 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 
 
 	/**
+	 * Esta funcion introduce una nueva ultima fecha de apoyo a un proyecto
+	 * 
 	 * @param fechaUltimoApoyo the fechaUltimoApoyo to set
 	 */
 	public void setFechaUltimoApoyo(Date fechaUltimoApoyo) {
@@ -375,6 +403,8 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 
 
 	/**
+	 * Esta funcion devuelve el coste de un proyecto
+	 * 
 	 * @return the coste
 	 */
 	public double getCoste() {
@@ -384,6 +414,8 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 
 
 	/**
+	 * Esta funcion devuelve la financiacion recibida
+	 * 
 	 * @return the financiacionRecibida
 	 */
 	public double getFinanciacionRecibida() {
@@ -393,6 +425,8 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 
 
 	/**
+	 * Esta funcion introduce en un proyecto una financiacionRecibida
+	 * 
 	 * @param financiacionRecibida the financiacionRecibida to set
 	 */
 	public void setFinanciacionRecibida(double financiacionRecibida) {
@@ -404,6 +438,8 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 
 
 	/**
+	 * Esta funcion devuelve el estado de un proyecto
+	 * 
 	 * @return the estadoProyecto
 	 */
 	public EstadoProyecto getEstadoProyecto() {
@@ -413,12 +449,19 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 
 
 
-	
+	/**
+	 * Esta funcion devvuelve el titulo del proyecto
+	 * 
+	 * @return nombre
+	 */
 	public String 	getProjectTitle() {
 		return this.nombre;
 	}
 
-	
+	/**
+	 * Esta funcion devuelve una descripcion ya sea la larga o la corta, esto dependera de si la decripcion larga supera los 500 caracteres
+	 * si esto ocurre se devolvera la decripcion corta
+	 */
 	public String getProjectDescription() {
 		if(this.descripcionLarga.length()>500) {
 			return this.descripcionCorta;
@@ -428,7 +471,10 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 		}
 	}
 	
-	
+	/**
+	 * Esta funcion devuelve el coste
+	 * @return coste
+	 */
 	public double getRequestedAmount() {
 		return this.coste;
 	}
@@ -440,6 +486,8 @@ public abstract class Proyecto implements java.io.Serializable, GrantRequest{
 
 
 	/**
+	 * Esta funcion devuelve la idSeguimientoSistemaFinanciacion de un proyecto
+	 * 
 	 * @return the idSeguimientoSistemaFinanciacion
 	 */
 	public String getIdSeguimientoSistemaFinanciacion() {

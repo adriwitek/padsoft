@@ -40,7 +40,12 @@ public class Aplicacion implements java.io.Serializable {
 	
 	private Usuario usuarioConectado;//Usuario estandar que esta usando en este momento la apliacion
 	
-	
+	 /**
+	  * Constructor, con los datos a implementar
+	  * @param nomAdmin que asignar a la aplicacion 
+	  * @param contrasena para asignar a la aplicacion
+	  * @param numMinApoyos para asignar a la aplicacion
+	  */
 	
 	//Constructor
 	public Aplicacion(String nomAdmin, String contrasena, Integer numMinApoyos) {
@@ -79,6 +84,15 @@ public class Aplicacion implements java.io.Serializable {
 	}
 	
 	// **** CONSTRUCTOR SINGLETON ***/
+	
+	/**
+	 * Esta funcion devuelve la instancia de la aplicacion
+	 * 
+	 * @param userAdmin
+	 * @param passwordAdmin
+	 * @param numMinApoyos
+	 * @return
+	 */
 	public static Aplicacion getInstancia(String userAdmin, String passwordAdmin,Integer numMinApoyos) {
 		if (INSTANCE == null) {
 			INSTANCE = new Aplicacion(userAdmin, passwordAdmin,numMinApoyos);
@@ -95,6 +109,12 @@ public class Aplicacion implements java.io.Serializable {
 	
 	
 	//Save
+	
+	/**
+	 * Esta funcion se encarga de hacer save en la aplicacion, devolvera true en caso correcto
+	 * 
+	 * @return
+	 */
 	public boolean saveAplicacion() {
 		try {
 			ObjectOutputStream objectFile = new ObjectOutputStream(new FileOutputStream(ficheroCarga));
@@ -109,7 +129,11 @@ public class Aplicacion implements java.io.Serializable {
 	
 	
 	
-
+	/**
+	 * Esta funcion se encarga de cargar una aplicacion
+	 * 
+	 * @return
+	 */
 	public Boolean loadAplicacion() {
 		//cargar app serializada
 		
@@ -140,7 +164,11 @@ public class Aplicacion implements java.io.Serializable {
 	}
 	
 	
-	
+	/**
+	 * Esta funcion cierra la aplicacion no sin antes hacer save de esta
+	 * 
+	 * @return
+	 */
 	public boolean exit() {
 		this.logOut();
 		INSTANCE = null;
@@ -148,6 +176,9 @@ public class Aplicacion implements java.io.Serializable {
 		
 	}
 	
+	/**
+	 * Esta funcion se encarga de caducar proyectos antiguos
+	 */
 	public void caducarProyectosAntiguos() {
 		
 		Date hoy = new Date();
@@ -163,7 +194,9 @@ public class Aplicacion implements java.io.Serializable {
 	}
 	
 	
-	
+	/**
+	 * Esta funcion de encarga de actualizar los proyecto financiados
+	 */
 	public void actualizarProyectosFinanciados() {
 		
 		Double financiacion;
@@ -203,7 +236,13 @@ public class Aplicacion implements java.io.Serializable {
 	//	***FUNCIONES LLAMADAS POR EL ADMIN***
 	
 	//loginAdmin
-	
+	/**
+	 * Esta funcion se encarga de logear a un administrador
+	 * 
+	 * @param user
+	 * @param password
+	 * @return
+	 */
 	public boolean loginAdmin(String user, String password) {
 		//Inicio sesion administrador
 		if(user.equals(this.nombreAdmin) && password.equals(this.contraseñaAdmin)) { 
@@ -213,6 +252,11 @@ public class Aplicacion implements java.io.Serializable {
 		return false;
 	}
 	
+	/**
+	 * Esta funcion devuelve un lista con los registros pendientes de aprobacion
+	 * 
+	 * @return
+	 */
 	public HashSet<Usuario> getRegistrosPendientesDeAprobacion(){
 		
 		if(!this.modoAdmin) return null;
@@ -232,7 +276,12 @@ public class Aplicacion implements java.io.Serializable {
 	}
 	
 	
-	
+	/**
+	 * Esta funcion se encarga de validar un registro
+	 * 
+	 * @param u
+	 * @return
+	 */
 	public Boolean validarRegistro(Usuario u) {
 		if(!this.modoAdmin) return false ;
 		u.aprobar();
@@ -240,7 +289,13 @@ public class Aplicacion implements java.io.Serializable {
 	}
 	
 	
-	
+	/**
+	 * Esta funcion se encarga de rechazar un registro
+	 * 
+	 * @param u
+	 * @param motivo
+	 * @return
+	 */
 	public Boolean rechazarRegistro(Usuario u,String motivo) {
 		if(!this.modoAdmin) return false;
 		u.rechazar(motivo);
@@ -248,7 +303,11 @@ public class Aplicacion implements java.io.Serializable {
 		return true;
 	}
 	
-
+	/**
+	 * Esta funcion se encarga de devolver una lista con los proyectos que han solicitado financiacion
+	 * 
+	 * @return
+	 */
 	public HashSet<Proyecto> getProyectosSolicitandoFinanciacion(){
 		
 		if(!this.modoAdmin) return null;
@@ -276,7 +335,9 @@ public class Aplicacion implements java.io.Serializable {
 	
 	
 	//	*** FUNCIONES LLAMADAS POR EL USUARIO LOGUEADO ***
-	
+	/**
+	 * Esta funcion se encarga de sacarte de la aplicacion
+	 */
 	public void logOut() {
 		this.modoAdmin = false;
 		this.usuarioConectado = null;
@@ -285,7 +346,13 @@ public class Aplicacion implements java.io.Serializable {
 	
 
 	
-	
+	/**
+	 * Esta funcion se encarga de iniciar sesion a un usuario 
+	 * 
+	 * @param nombre
+	 * @param contraseña
+	 * @return
+	 */
 	public boolean loginUser(String nombre, String contraseña) {
 		Usuario  aux;
 		//Buscar usuario
@@ -304,6 +371,18 @@ public class Aplicacion implements java.io.Serializable {
 		return false;
 	}
 	
+	/**
+	 * Esta funcion se encarga de crear un proyecto social dentro de la aplicacion
+	 * 
+	 * @param p
+	 * @param nombre
+	 * @param descrL
+	 * @param descC
+	 * @param cost
+	 * @param gSocial
+	 * @param nac
+	 * @return
+	 */
 	public ProyectoSocial crearProyectoSocial(Proponente p,String nombre, String descrL, String descC , double cost ,String gSocial, Boolean nac){
 		
 		ProyectoSocial proyecto;
@@ -325,7 +404,19 @@ public class Aplicacion implements java.io.Serializable {
 		
 	}
 	
-	
+	/**
+	 * Esta funcion se encarga de crear un proyecto social dentro de la aplicacion
+	 * 
+	 * @param p
+	 * @param nombre
+	 * @param descrL
+	 * @param descC
+	 * @param cost
+	 * @param croquis
+	 * @param imagen
+	 * @param distritos
+	 * @return
+	 */
 	public ProyectoInfraestructura crearProyectoInfraestructura(Proponente p,String nombre, String descrL, String descC , double cost,String croquis ,String imagen,HashSet<String> distritos){
 		ProyectoInfraestructura proyecto;
 		
@@ -357,6 +448,15 @@ public class Aplicacion implements java.io.Serializable {
 	//	***FUNCIONES VARIAS INTERNAS***
 
 	//nuevo registro usuario hecho por GSOLLA el 27/03/2020
+	
+	/** 
+	 * Esta funcion se encarga de solicitar el registro de un nuevo usuario en la aplicacion
+	 * 
+	 * @param nif
+	 * @param nombre
+	 * @param contraseña
+	 * @return
+	 */
 	public Usuario solicitarRegistro(String nif, String nombre, String contraseña) {
 		
 		Usuario newUser, aux;
@@ -375,26 +475,48 @@ public class Aplicacion implements java.io.Serializable {
 	
 	
 	
-
+	/**
+	 * Esta funcion se encarga de devolver la id de un proyecto
+	 * 
+	 * @return
+	 */
 	public  int getNewProjectUniqueId() {
 		return  lastProjectUniqueID +1;
 	}
 	
+	/**
+	 * Esta funcions e encarga de activar el modo admin
+	 * 
+	 * @return
+	 */
 	public Boolean isModoAdmin() {
 		return this.modoAdmin;
 	}
 	
+	/**
+	 * Esta funcion se encarga de devolver el numero minimo de apoyos necesarios en un proyecto
+	 * 
+	 * @return
+	 */
 	public Integer getNumeroMinimimoApoyos() {
 		return numMinApoyos;
 	}
 	
-
+	/**
+	 * Esta funcion se encarga de devolver los distritos que contiene la aplicacion
+	 * 
+	 * @return
+	 */
 	public HashSet<String> getDistritos(){
 		//return (HashSet<String>) Collections.unmodifiableSet(this.distritosPermitidos);
 		return this.distritosPermitidos;
 	}
 
-	
+	/**
+	 * Esta funcion se encarga de devolver si un usuario esta conectado
+	 * 
+	 * @return
+	 */
 	public Usuario getUsuarioConectado() {
 		return this.usuarioConectado;
 	}

@@ -12,6 +12,20 @@ public class ProyectoInfraestructura extends Proyecto {
 	private String croquisPath;
 	private String imgPath;
 	private HashSet<String> distritos;
+	
+	 /**
+	  * Constructor, con los datos a implementar
+	  * @param p que asignar al proponente 
+	  * @param uCreador para asignar al usuario que ha creado el proyecto
+	  * @param nombre para asignar al proyecto
+	  * @param descrL para asignar al proyecto
+	  * @param descC para asignar al proyecto
+	  * @param cost para asignar a la financiacón que se pretende obtener para crear el proyecto
+	  * @param croquis para asignar un croquis al proyecto
+	  * @param imgPath para asignar una imagen al proyecto
+	  * @param distritos para asignar una zona de accion para el proyecto
+	  */
+	
 	public ProyectoInfraestructura(Proponente p, Usuario uCreador,String nombre, String descrL, String descC , double cost,String croquis ,String imgPath,HashSet<String> distritos) {
 		
 		super(p, uCreador, nombre, descrL, descC, cost);
@@ -47,6 +61,12 @@ public class ProyectoInfraestructura extends Proyecto {
 	}
 	
 	
+	/**
+	 * Esta funcion introduce en la lista de distritos (en los que actura el proyecto) un nuevo distrito
+	 * 
+	 * @param d
+	 * @return
+	 */
 	
 	public Boolean addDistrito(String d) {
 		if(Aplicacion.getInstancia(null, null, null).getDistritos().contains(d)) {
@@ -57,7 +77,11 @@ public class ProyectoInfraestructura extends Proyecto {
 	}
 	
 	
-	
+	/**
+	 * Esta funcion devolvera un string que contendra una lista de distritos del proyecto
+	 * 
+	 * @return cadena
+	 */
 
 	public String getExtraData() {
 		String cadena = "";
@@ -71,7 +95,9 @@ public class ProyectoInfraestructura extends Proyecto {
 		return cadena;
 	}
 	
-	
+	/**
+	 * Esta funcion devuelve que tipo de proyecto es
+	 */
 	public GrantRequest.ProjectKind getProjectKind(){
 		return GrantRequest.ProjectKind.Infrastructure;
 	}

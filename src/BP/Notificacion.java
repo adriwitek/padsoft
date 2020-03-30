@@ -30,6 +30,7 @@ public class Notificacion {
 	
 	
 	/**
+	 * Esta funcion devuelve el titulo de una notificacion
 	 * 
 	 * @return the titulo
 	 */
@@ -38,6 +39,7 @@ public class Notificacion {
 	}
 	
 	/**
+	 * Esta funcion introduce el titulo a un notificacion
 	 * 
 	 * @param titulo
 	 */
@@ -46,6 +48,7 @@ public class Notificacion {
 	}
 	
 	/**
+	 * Esta funcion devuelve la descripcion de una funcion
 	 * 
 	 * @return the descripcion
 	 */
@@ -54,6 +57,7 @@ public class Notificacion {
 	}
 
 	/**
+	 * Esta funcion introduce una descripcion a una notificacion especifica
 	 * 
 	 * @param descripcion
 	 */
@@ -62,6 +66,7 @@ public class Notificacion {
 	}
 
 	/**
+	 * Esta funcion devuelve la fecha de creacion de la notificacion
 	 * 
 	 * @return the fechaCreacion
 	 */
