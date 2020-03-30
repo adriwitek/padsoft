@@ -17,11 +17,7 @@ public class AplicacionTest {
 		}
 	
 	
-	public void testCaducarProyectosAntiguos() {
-		Usuario user = app.solicitarRegistro("123456789A", "nombre", "contraseña");
-		app.validarRegistro(user);
-		app.crearProyectoSocial(user, "proyecto", "Larga", "Corta",1780, "obreros", true);
-	}
+	
 	@Test
 	public void testLoginAdmin() {
 		//introducir credenciales bien

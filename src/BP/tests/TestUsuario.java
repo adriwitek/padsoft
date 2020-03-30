@@ -34,7 +34,7 @@ public class TestUsuario {
 		//Comprobar estado
 		assertEquals("ERROR, Desbloquear usuario",EstadoUsuario.OPERATIVO,testUser.getEstado());
 		//Comprobar notificacion
-		assertTrue("ERROR, Notificación desbloqueo usuario no eliminada",testUser.getnBloqueoDeAdmin().getDescripcion() == null);
+		assertTrue("ERROR, Notificación desbloqueo usuario no eliminada",testUser.getnBloqueoDeAdmin() == null);
 	}
 	
 	@Test
