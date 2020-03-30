@@ -69,7 +69,7 @@ public class Colectivo extends Proponente{
 			return true;
 		}else {
 			for(@SuppressWarnings("unused") Colectivo c: this.subcolectivos) {
-				 getIsUsuarioEnColectivoSubcolectivo(u);
+				 c.getIsUsuarioEnColectivoSubcolectivo(u);
 			}
 		}
 		return false;

@@ -17,6 +17,10 @@ public class main {
 		Usuario u1 = app.solicitarRegistro("1234456789A", "Guillermo", "1234");
 		Usuario u2 =app.solicitarRegistro("98726543321A", "Adrian", "1234");
 		Usuario u3 =app.solicitarRegistro("12344567893A", "Tapia", "1234");
+		Usuario u4 =app.solicitarRegistro("123424563337893A", "U4", "1234");
+		Usuario u5 =app.solicitarRegistro("12344567423893A", "U5", "1234");
+
+		
 		if(u1 == null ||u2 == null || u3 == null   ) System.out.println("Los u devueltos son nulos");
 		
 		
@@ -28,7 +32,7 @@ public class main {
 		Colectivo c1 = new Colectivo(u1,"Colectivo 1",null);
 		Colectivo c2 = new Colectivo(u2,"Colectivo 2",null);
 		Colectivo subC2 = c2.crearSubcolectivo("Sucolectivo 2,hijo de colectivo 2");
-		
+		subC2.suscribirseColectivo(u4);
 		
 		//VALIDAMOS LOS REGISTROS
 		app.loginAdmin("admin", "1234");
@@ -37,6 +41,8 @@ public class main {
 		app.validarRegistro(u1);
 		app.validarRegistro(u2);
 		app.validarRegistro(u3);
+		app.validarRegistro(u4);
+		app.validarRegistro(u5);
 		app.logOut();
 		app.loginUser("Guillermo", "1234");
 		System.out.println("Usuario logueado: " + app.getUsuarioConectado());
@@ -69,9 +75,9 @@ public class main {
 		setDistritos2.add("Latina");
 
 		ProyectoInfraestructura pInfraestructura1 =  app.crearProyectoInfraestructura(u1 ,"P. Infra 1",  "Descrip Laaarga", "Description corta",  100000,pathCroquis1  , pathImg1,setDistritos1);
-		//ProyectoInfraestructura pInfraestructura2 =  app.crearProyectoInfraestructura(u1 ,"P. Infra 2",  "Descrip Laaarga", "Description corta",  100000, pathCroquis2 , pathImg2,setDistritos2);
+		ProyectoInfraestructura pInfraestructura2 =  app.crearProyectoInfraestructura(u1 ,"P. Infra 2",  "Descrip Laaarga", "Description corta",  100000, pathCroquis2 , pathImg2,setDistritos2);
 
-		/*
+		
 		//PROPOSICION DE PROYECTOS
 		u2.proponerProyecto(pSocial1);
 		u2.proponerProyecto(pInfraestructura1);
@@ -81,12 +87,35 @@ public class main {
 		c2.proponerProyecto(pSocial3);
 		subC2.proponerProyecto(pInfraestructura2);
 		
-		*/
-		//Caducidad
 		
 		
-		//Financiacion
+		//APOYOS
 		
+		pSocial1.validarProyecto();
+		pSocial2.validarProyecto();
+		pSocial3.validarProyecto();
+		pInfraestructura1.validarProyecto();
+		pInfraestructura2.validarProyecto();
+		
+		//Apoyo de un usuario
+		System.out.println("BEFORE:Apoyos del pSocial1:" + pSocial1.getNumeroApoyosActualesValidos() );
+		pSocial1.apoyarProyecto(u3);
+		System.out.println("AFTER:Apoyos del pSocial1:" + pSocial1.getNumeroApoyosActualesValidos() );
+
+		//Apoyando como subcolectivo, y luego con el colectivo padre, deberia dar el mismo numero de votos
+		System.out.println("BEFORE:Apoyos del pInfraestructura2:" + pInfraestructura2.getNumeroApoyosActualesValidos() );
+		pInfraestructura2.apoyarProyectoComoColectivo(subC2);
+		System.out.println("AFTER:Apoyos del pInfraestructura2:" + pInfraestructura2.getNumeroApoyosActualesValidos() );
+		c2.suscribirseColectivo(u4);
+		System.out.println("Mismo numero de apoyos al apoyar en colectivo que contiene al subcoletivo=:" + pInfraestructura2.getNumeroApoyosActualesValidos() );
+
+		
+		//CADUCIDAD
+		
+		
+		//FINANCIACION
+		
+		System.out.println("FIN DE LA DEMO");
 	}
 	
 

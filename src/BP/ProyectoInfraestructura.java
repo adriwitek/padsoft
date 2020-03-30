@@ -3,6 +3,7 @@ package BP;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.HashSet;
 
 import es.uam.eps.sadp.grants.GrantRequest;
@@ -36,8 +37,8 @@ public class ProyectoInfraestructura extends Proyecto {
 	        File dest2 = new File(this.croquisPath);
 
 	        
-			Files.copy(sourceImg.toPath(), dest1.toPath());
-			Files.copy(sourceCroquis.toPath(), dest2.toPath());
+			Files.copy(sourceImg.toPath(), dest1.toPath(),StandardCopyOption.REPLACE_EXISTING);
+			Files.copy(sourceCroquis.toPath(), dest2.toPath(),StandardCopyOption.REPLACE_EXISTING);
 			
 			
 		} catch (IOException e) {
