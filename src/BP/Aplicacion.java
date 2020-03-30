@@ -25,7 +25,7 @@ public class Aplicacion implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 1111;
 	private static Aplicacion INSTANCE = null;
-	private String ficheroCarga = "ficheroCarga.obj";
+	private String ficheroCarga = "applicationBackup";
 	private String distritosPath = "distritos/Distritos.txt";
 	//Admin
 	private String nombreAdmin;
