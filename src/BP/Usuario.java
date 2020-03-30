@@ -24,10 +24,10 @@ public class Usuario extends Proponente {
 	
 	/*Constructor*/
 	public Usuario(String nif, String nomb, String contra) {
-		if(nif.isEmpty()|| nombre.isEmpty()|| contra.isEmpty()
+		/*if(nif.isEmpty()|| nombre.isEmpty()|| contra.isEmpty()
 			|| Objects.isNull(nif) ||  Objects.isNull(nombre)|| Objects.isNull(contra)) {
 			throw new IllegalArgumentException("Debes de introducir los datos obligatorios y no pueden ser vacios");
-		}
+		}*/
 		NIF = nif; nombre = nomb; 
 		setContraseña(contra); 
 		setEstado(EstadoUsuario.PENDIENTE);
@@ -165,6 +165,10 @@ public class Usuario extends Proponente {
 		return Collections.unmodifiableList(nRechazoProyectoProponente);
 	}
 	
+	
+	public String toString() {
+		return this.nombre;
+	}
 	
 	
 }

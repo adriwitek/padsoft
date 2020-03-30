@@ -1,7 +1,10 @@
 package BP;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -23,6 +26,7 @@ public class Aplicacion implements java.io.Serializable {
 	private static final long serialVersionUID = 1111;
 	private static Aplicacion INSTANCE = null;
 	private String ficheroCarga = "ficheroCarga.obj";
+	private String distritosPath = "distritos/Distritos.txt";
 	//Admin
 	private String nombreAdmin;
 	private String contraseñaAdmin;
@@ -56,8 +60,17 @@ public class Aplicacion implements java.io.Serializable {
 		
 		//Cargamos los distritos
 		distritosPermitidos = new HashSet<String>();
-		try (Stream<String> stream = Files.lines(Paths.get("distritos/Distritos.txt"))) {
-	        stream.forEach(distritosPermitidos::add);
+		try {
+			
+			BufferedReader br = new BufferedReader(new FileReader(distritosPath));
+	           String d;
+	           while((d = br.readLine()) != null){
+	        	   this.distritosPermitidos.add(d);	               //Leer la siguiente línea
+	           }
+		}catch (FileNotFoundException e) {
+	            System.out.println("Error: Fichero no encontrado");
+	            System.out.println(e.getMessage());
+	        
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -192,7 +205,7 @@ public class Aplicacion implements java.io.Serializable {
 		//Inicio sesion administrador
 		if(user.equals(this.nombreAdmin) && password.equals(this.contraseñaAdmin)) { 
 			this.modoAdmin = true;
-				return true;
+			return true;
 		}
 		return false;
 	}
@@ -204,7 +217,7 @@ public class Aplicacion implements java.io.Serializable {
 		Usuario u;
 		HashSet<Usuario> pendientes = new HashSet<Usuario>();
 		for(Proponente p: this.proponentes) {
-			if( p.getClass().getName() == "Usuario" ) {
+			if( p.getClass().getSimpleName().equals("Usuario")) {
 				u = (Usuario)p;
 				if(u.getEstado()== EstadoUsuario.PENDIENTE) {
 					pendientes.add(u);
@@ -274,7 +287,7 @@ public class Aplicacion implements java.io.Serializable {
 		Usuario  aux;
 		//Buscar usuario
 		for(Proponente p: this.proponentes ) {
-			if(p.getClass().getName() == "Usuario") {
+			if(p.getClass().getSimpleName().equals("Usuario")) {
 				aux = (Usuario)p;
 				//Coinciden creedenciales y el usuario está operativo
 				if(aux.getEstado().equals(EstadoUsuario.OPERATIVO) && aux.getNombre().equals(nombre) && aux.getContraseña().equals(contraseña)) {
@@ -292,7 +305,7 @@ public class Aplicacion implements java.io.Serializable {
 		
 		ProyectoSocial proyecto;
 		
-		if(p.getClass().getName().equals("Colectivo")) {
+		if(p.getClass().getSimpleName().equals("Colectivo")) {
 			Colectivo c = (Colectivo) p;
 			proyecto = new ProyectoSocial(p,c.getUsuarioRepresentanteDeColectivo() ,nombre,descrL, descC, cost,gSocial, nac);
 			
@@ -313,7 +326,7 @@ public class Aplicacion implements java.io.Serializable {
 	public ProyectoInfraestructura crearProyectoInfraestructura(Proponente p,String nombre, String descrL, String descC , double cost,String croquis ,String imagen,HashSet<String> distritos){
 		ProyectoInfraestructura proyecto;
 		
-		if(p.getClass().getName().equals("Colectivo")) {
+		if(p.getClass().getSimpleName().equals("Colectivo")) {
 			Colectivo c = (Colectivo) p;
 			proyecto = new ProyectoInfraestructura(p,c.getUsuarioRepresentanteDeColectivo() , nombre,  descrL,  descC ,  cost , croquis , imagen,distritos);
 			
@@ -345,7 +358,7 @@ public class Aplicacion implements java.io.Serializable {
 		
 		Usuario newUser, aux;
 		for(Proponente p: this.proponentes ) {
-			if(p.getClass().getName() == "Usuario") {
+			if(p.getClass().getSimpleName().equals("Usuario") ) {
 				aux = (Usuario)p;
 				if(aux.getNombre().equals(nombre) || aux.getNIF().equals(nif)) {
 					return null;
